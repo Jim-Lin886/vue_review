@@ -13,6 +13,7 @@ export default createStore({
       // console.log("pushIsOpenMenu", state.isOpenMenu);
       //987
       //123
+      //654
     },
   },
   actions: {
