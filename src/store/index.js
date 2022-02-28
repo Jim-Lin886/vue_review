@@ -11,9 +11,6 @@ export default createStore({
     pushIsOpenMenu(state, payload) {
       state.isOpenMenu = payload;
       // console.log("pushIsOpenMenu", state.isOpenMenu);
-      //123
-      //456
-      //789
     },
   },
   actions: {
