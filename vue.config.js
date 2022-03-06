@@ -6,5 +6,6 @@ module.exports = {
       return args;
     });
   },
-  publicPath: process.env.NODE_ENV === "production" ? "/vue-review/" : "/",
+  // publicPath: process.env.NODE_ENV === "production" ? "/vue-review/" : "/",
+  publicPath: "./",
 };
