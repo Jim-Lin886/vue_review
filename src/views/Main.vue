@@ -2,26 +2,26 @@
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { Setting, Menu, HomeFilled, TurnOff } from "@element-plus/icons-vue";
 import {
-  // Location,
-  // Document,
-  // Apple,
-  // Setting,
-  Menu,
-  HomeFilled,
-  Promotion,
-} from "@element-plus/icons-vue";
+  Route_VUE,
+  Route_VUEX,
+  Route_VUE_ROUTER,
+  Route_GITHUB,
+  Route_SOURCE_TREE,
+} from "@/router";
+import { getFehIdByType } from "@/assets/data/InstructionController.js";
+import LanguageChooser from "../components/LanguageChooser.vue";
+
 export default {
   components: {
-    // IconLocation: Location,
-    // IconDocument: Document,
-    // IconApple: Apple,
-    // IconSetting: Setting,
     IconHome: HomeFilled,
+    LanguageChooser,
   },
   setup() {
     const iconMenu = Menu;
-    const iconPomotion = Promotion;
+    const IconSetting = Setting;
+    const iconTurnOff = TurnOff;
 
     const store = useStore();
     const router = useRouter();
@@ -45,13 +45,22 @@ export default {
     const handMenuSelect = (index, indexPath) => {
       let ary = [
         "",
-        "/main/insVue",
-        "/main/insVuex",
-        "/main/insVueRouter",
-        "/main/insGitHub",
-        "/main/insSourceTree",
+        { path: Route_VUE },
+        { path: Route_VUEX },
+        { path: Route_VUE_ROUTER },
+        { path: Route_GITHUB },
+        { path: Route_SOURCE_TREE },
       ];
-      router.push({ path: ary[index] });
+      let routerType = ary[index]["path"];
+      let fehId = getFehIdByType(routerType) || "";
+
+      router.push(
+        fehId
+          ? {
+              path: `/main/${routerType}/${fehId}`,
+            }
+          : { path: `/main` }
+      );
       // console.log("handMenuSelect");
     };
     const handBtnOpenMenu = () => {
@@ -61,16 +70,21 @@ export default {
     const handLogout = () => {
       router.push({ path: "/" });
     };
+    const handGithub = () => {
+      window.open("https://github.com/Jim-Lin886/vue_review");
+    };
 
     return {
       iconMenu,
-      iconPomotion,
+      IconSetting,
+      iconTurnOff,
       isOpenMenu,
       handMenuOpen,
       handMenuClose,
       handMenuSelect,
       handBtnOpenMenu,
       handLogout,
+      handGithub,
     };
   },
 };
@@ -91,44 +105,59 @@ export default {
             align="middle"
           >
             <el-col :span="4">
-              <el-button
-                type="primary"
-                style="width: 50px; height: 50px"
-                :icon="iconMenu"
-                circle
-                @click="handBtnOpenMenu"
-              ></el-button>
+              <el-tooltip content="清單" placement="bottom">
+                <el-button
+                  type="primary"
+                  style="width: 50px; height: 50px"
+                  :icon="iconMenu"
+                  circle
+                  @click="handBtnOpenMenu"
+                ></el-button>
+              </el-tooltip>
             </el-col>
             <el-col :span="20">
               <div class="toolbar-left">
-                <el-button
-                  type="primary"
-                  style="width: 50px; height: 50px"
-                  :icon="iconPomotion"
-                  circle
-                  @click="handLogout"
-                ></el-button>
-                <el-button
-                  type="primary"
-                  style="width: 50px; height: 50px"
-                  :icon="iconPomotion"
-                  circle
-                  @click="handLogout"
-                ></el-button>
-                <el-button
-                  type="primary"
-                  style="width: 50px; height: 50px"
-                  :icon="iconPomotion"
-                  circle
-                  @click="handLogout"
-                ></el-button>
-                <el-button
-                  type="primary"
-                  style="width: 50px; height: 50px"
-                  :icon="iconPomotion"
-                  circle
-                  @click="handLogout"
-                ></el-button>
+                <el-popover placement="bottom" :width="400" trigger="click">
+                  <template #reference>
+                    <el-button
+                      type="primary"
+                      style="width: 50px; height: 50px"
+                      :icon="IconSetting"
+                      circle
+                    ></el-button>
+                  </template>
+
+                  <div style="height: 200px; width: 100%">
+                    <h3>{{ $t("label.selectLang") }}</h3>
+                    <language-chooser />
+                  </div>
+                </el-popover>
+
+                <el-tooltip content="登出" placement="bottom">
+                  <el-button
+                    type="primary"
+                    style="width: 50px; height: 50px"
+                    :icon="iconTurnOff"
+                    circle
+                    @click="handLogout"
+                  ></el-button>
+                </el-tooltip>
+                <el-tooltip content="Github" placement="bottom">
+                  <el-button
+                    color="#f0f0f0"
+                    style="width: 50px; height: 50px"
+                    circle
+                    @click="handGithub"
+                  >
+                    <el-icon>
+                      <img
+                        style="width: 30px; height: 30px"
+                        alt=""
+                        src="../assets/images/gitHub.png"
+                      />
+                    </el-icon>
+                  </el-button>
+                </el-tooltip>
               </div>
             </el-col>
           </el-row>

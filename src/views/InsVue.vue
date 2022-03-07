@@ -1,6 +1,21 @@
 <script>
-export default {};
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import Instruction from "../components/Instruction.vue";
+export default {
+  components: {
+    Instruction,
+  },
+  setup() {
+    console.log("vue");
+    const route = useRoute();
+    const fehId = ref(route.params.fehId);
+    return { fehId };
+  },
+};
 </script>
-<template>Vue</template>
+<template>
+  <instruction :fehId="fehId" />
+</template>
 
 <style></style>

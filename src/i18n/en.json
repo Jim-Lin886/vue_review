@@ -1,0 +1,13 @@
+{
+  "label.login": "Logoin",
+  "label.logout": "logout",
+  "label.reset": "Reset",
+  "label.clean": "clean",
+  "label.account": "Account",
+  "label.password": "Password",
+  "label.selectLang": "Select Language",
+
+  "message.inputAccount": " Please input Account",
+  "message.inputPassword": "Please input Password",
+  "message.select": "Please select"
+}

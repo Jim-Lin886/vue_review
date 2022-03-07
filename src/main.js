@@ -1,9 +1,10 @@
 import { createApp, onMounted } from "vue";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
-import App from "./App.vue";
+import i18n from "./i18n";
 import router from "./router";
 import store from "./store";
+import App from "./App.vue";
 
 const app = createApp(App);
 
@@ -43,4 +44,4 @@ app.config.errorHandler = (err, vm, info) => {
 app.config.warnHandler = (msg, vs, trace) => {
   // `trace` 是组件的继承关系追踪
 };
-app.use(ElementPlus).use(store).use(router).mount("#app");
+app.use(i18n).use(ElementPlus).use(store).use(router).mount("#app");

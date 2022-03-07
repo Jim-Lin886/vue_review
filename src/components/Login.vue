@@ -2,11 +2,13 @@
 import { ref, reactive } from "@vue/reactivity";
 import { CircleCheck, CircleClose } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 export default {
   setup() {
     const iconCheck = CircleCheck;
     const iconClose = CircleClose;
     const router = useRouter();
+    const { t } = useI18n();
 
     const formRef = ref();
     const passwordRef = ref();
@@ -15,7 +17,9 @@ export default {
     const validateAccount = (rule, value, callback) => {
       console.log("validateAccount");
       if (value === "") {
-        callback(new Error("Please input Account"));
+        callback(new Error(t("message.inputAccount")));
+
+        $t("label.reset");
       } else {
         // if (objLogin.account !== "") {
         //   if (!formRef.value) return;
@@ -26,7 +30,7 @@ export default {
     };
     const validatePassword = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("Please input Password"));
+        callback(new Error(t("message.inputPassword")));
       }
       callback();
     };
@@ -105,7 +109,7 @@ export default {
             type="text"
             clearable
             autocomplete="false"
-            placeholder="Account"
+            :placeholder="$t('label.account')"
             @keydown.enter="handAccountKeyEnter"
           >
           </el-input>
@@ -138,28 +142,34 @@ export default {
             clearable
             show-password
             autocomplete="false"
-            placeholder="Password"
+            :placeholder="$t('label.password')"
             @keydown.enter="handSummit(formRef)"
           ></el-input>
         </el-form-item>
 
         <el-form-item class="center">
+          <!-- <el-tooltip :content="$t('label.login')"> -->
+          <!-- <template #content>{{ $t("label.login") }}</template> -->
           <el-button
             type="primary"
             style="width: 70px; height: 70px"
-            :icon="iconCheck"
             circle
             @click="handSummit(formRef)"
-            >Login</el-button
+            >{{ $t("label.login") }}</el-button
           >
 
+          <!-- :icon="iconCheck" -->
+          <!-- </el-tooltip> -->
+          <!-- <el-tooltip :content="$t('label.reset')" placement="bottom"> -->
+          <!-- <template #content>{{ $t("label.reset") }}</template> -->
           <el-button
             style="width: 70px; height: 70px"
-            :icon="iconClose"
             circle
             @click="handReset(formRef)"
-            >Reset</el-button
+            >{{ $t("label.reset") }}</el-button
           >
+          <!-- :icon="iconClose" -->
+          <!-- </el-tooltip> -->
         </el-form-item>
       </el-form>
     </div>

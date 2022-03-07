@@ -6,11 +6,18 @@ import {
 
 import NotFound from "../components/NotFound.vue";
 import Login from "../components/Login.vue";
+import InsHome from "../views/InsHome.vue";
 import InsVue from "../views/InsVue.vue";
 import InsVuex from "../views/InsVuex.vue";
 import InsVueRouter from "../views/InsVueRouter.vue";
 import InsGitHub from "../views/InsGitHub.vue";
 import InsSourceTree from "../views/InsSourceTree.vue";
+
+export const Route_VUE = "insVue";
+export const Route_VUEX = "insVuex";
+export const Route_VUE_ROUTER = "insVueRouter";
+export const Route_GITHUB = "insGitHub";
+export const Route_SOURCE_TREE = "insSourceTree";
 
 const routes = [
   {
@@ -24,23 +31,27 @@ const routes = [
     component: () => import("../views/Main.vue"),
     children: [
       {
-        path: "insVue",
+        path: "",
+        component: InsHome,
+      },
+      {
+        path: `${Route_VUE}/:fehId`,
         component: InsVue,
       },
       {
-        path: "insVuex",
+        path: `${Route_VUEX}/:fehId`,
         component: InsVuex,
       },
       {
-        path: "insVueRouter",
+        path: `${Route_VUE_ROUTER}/:fehId`,
         component: InsVueRouter,
       },
       {
-        path: "insGitHub",
+        path: `${Route_GITHUB}/:fehId`,
         component: InsGitHub,
       },
       {
-        path: "insSourceTree",
+        path: `${Route_SOURCE_TREE}/:fehId`,
         component: InsSourceTree,
       },
     ],

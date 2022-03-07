@@ -1,0 +1,13 @@
+{
+  "label.login": "登入",
+  "label.logout": "登出",
+  "label.reset": "重置",
+  "label.clean": "清除",
+  "label.account": "帳號",
+  "label.password": "密碼",
+  "label.selectLang": "選擇語言",
+
+  "message.inputAccount": "請輸入帳號",
+  "message.inputPassword": "請輸入密碼",
+  "message.select": "請選擇"
+}
