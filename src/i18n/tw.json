@@ -6,6 +6,9 @@
   "label.account": "帳號",
   "label.password": "密碼",
   "label.selectLang": "選擇語言",
+  "label.menu": "清單",
+  "label.setting": "設定",
+  "label.home": "首頁",
 
   "message.inputAccount": "請輸入帳號",
   "message.inputPassword": "請輸入密碼",

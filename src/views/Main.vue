@@ -105,7 +105,7 @@ export default {
             align="middle"
           >
             <el-col :span="4">
-              <el-tooltip content="清單" placement="bottom">
+              <el-tooltip :content="$t('label.menu')" placement="bottom">
                 <el-button
                   type="primary"
                   style="width: 50px; height: 50px"
@@ -133,7 +133,7 @@ export default {
                   </div>
                 </el-popover>
 
-                <el-tooltip content="登出" placement="bottom">
+                <el-tooltip :content="$t('label.logout')" placement="bottom">
                   <el-button
                     type="primary"
                     style="width: 50px; height: 50px"
@@ -167,7 +167,7 @@ export default {
       <el-main>
         <div id="main">
           <el-menu
-            default-active="2"
+            default-active="0"
             active-text-color="#ffd04b"
             background-color="#545c64"
             class="el-menu-vertical-demo"
@@ -179,7 +179,7 @@ export default {
           >
             <el-menu-item index="0">
               <el-icon :size="80"><icon-home /></el-icon>
-              <span>首頁</span>
+              <span>{{ $t("label.home") }}</span>
             </el-menu-item>
             <el-menu-item index="1">
               <!-- <el-icon><icon-apple /></el-icon> -->
@@ -248,8 +248,8 @@ export default {
               </el-menu-item>
             </el-sub-menu>
           </el-menu>
-          <router-view />
-          <!-- <div ref="mainRight" id="main-right">menu right</div> -->
+
+          <div id="main-right"><router-view /></div>
         </div>
       </el-main>
     </el-container>
@@ -267,7 +267,9 @@ export default {
   flex-flow: row nowrap;
 
   #main-right {
-    width: 100%;
+    // height: 100%;
+    // width: 100%;
+    overflow: auto;
     // flex-basis: 100%;
   }
 }

@@ -2,6 +2,8 @@
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import Instruction from "../components/Instruction.vue";
+
+import { apiGetWeatherOfKH, apiGetCityList, apiGetTownList } from "../axios";
 export default {
   components: {
     Instruction,
@@ -10,12 +12,49 @@ export default {
     console.log("vue");
     const route = useRoute();
     const fehId = ref(route.params.fehId);
-    return { fehId };
+
+    const handClick = (e) => {
+      apiGetWeatherOfKH()
+        .then((res) => {
+          console.log("apiGetWeatherOfKH", data.res);
+        })
+        .catch((error) => {});
+    };
+    const handClick1 = (e) => {
+      apiGetCityList()
+        .then((res) => {
+          console.log("apiGetTownList", data.res);
+        })
+        .catch((error) => {});
+    };
+    const handClick2 = (e) => {
+      apiGetTownList("63000")
+        .then((res) => {
+          console.log("apiGetTownList", data.res);
+        })
+        .catch((error) => {});
+    };
+    return { fehId, handClick, handClick1, handClick2 };
   },
 };
 </script>
 <template>
-  <instruction :fehId="fehId" />
+  <div class="container">
+    <instruction class="item" :fehId="fehId" />
+    <div class="item">
+      <el-button @click="handClick">weather</el-button>
+      <el-button @click="handClick1">city</el-button>
+      <el-button @click="handClick2">town</el-button>
+    </div>
+  </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  .item {
+    flex: 1;
+  }
+}
+</style>

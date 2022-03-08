@@ -2,8 +2,8 @@ import { createI18n } from "vue-i18n";
 import tw from "./tw.json";
 import en from "./en.json";
 
-export const item_tw = { key: "zh_tw", code: "tw" };
-export const item_en = { key: "zh_en", code: "en" };
+export const item_tw = { label: "繁體中文", value: "zh_tw" };
+export const item_en = { label: "English", value: "en_us" };
 
 const i18n = createI18n({
   //   legacy: false,

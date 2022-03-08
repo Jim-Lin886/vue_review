@@ -1,3 +1,14 @@
+<script>
+import { useStore } from "vuex";
+import { item_tw } from "./i18n";
+export default {
+  setup() {
+    const store = useStore();
+    store.dispatch("commitLang", item_tw.value);
+  },
+};
+</script>
+
 <template>
   <!-- <div id="nav">
     <router-link to="/">Home</router-link> |

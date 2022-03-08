@@ -15,7 +15,22 @@ export default {
 };
 </script>
 <template>
-  <instruction :fehId="fehId" />
+  <div class="container">
+    <instruction class="item" :fehId="fehId" />
+    <el-divider
+      style="height: 100px; width: 10px"
+      direction="vertical"
+    ></el-divider>
+    <div class="item">333</div>
+  </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  .item {
+    flex: 1;
+  }
+}
+</style>

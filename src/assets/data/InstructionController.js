@@ -20,6 +20,8 @@ export const InsVueContent = {
     另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
     如果你想在深入学习 Vue 之前对它有更多了解，我们制作了一个视频，带你了解其核心概念和一个示例工程。`,
     img: "https://book.vue.tw/assets/img/1-1-vue-logo.402955e1.png",
+    refContent: "Vue3使用文件",
+    refUrl: "https://v3.cn.vuejs.org/",
   },
 };
 export const fehId_00002 = "fehId_00002";
@@ -29,6 +31,8 @@ export const InsVuexContent = {
     title: "Vuex",
     content: `Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式 + 库。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。`,
     img: "https://vuex.vuejs.org/flow.png",
+    refContent: "Vuex4使用文件",
+    refUrl: "https://vuex.vuejs.org/zh/guide/",
   },
 };
 export const fehId_00003 = "fehId_00003";
@@ -49,6 +53,8 @@ export const InsVueRouterContent = {
     可定制的滚动行为
     URL 的正确编码`,
     img: "https://miro.medium.com/max/1400/1*rHC1ENA5eA5buxmnwHL76Q.jpeg",
+    refContent: "Vuex-Router4使用文件",
+    refUrl: "https://router.vuejs.org/zh/guide/",
   },
 };
 export const fehId_00004 = "fehId_00004";
@@ -61,6 +67,8 @@ export const InsGithubContent = {
     GitHub同時提供付費帳戶和免費帳戶。這兩種帳戶都可以建立公開或私有的代碼倉庫，但付費使用者擁有更多功能。根據在2009年的Git使用者調查，GitHub是最流行的Git存取站點。[2]除了允許個人和組織建立和存取保管中的代碼以外，
     它也提供了一些方便社會化共同軟體開發的功能，即一般人口中的社群功能，包括允許使用者追蹤其他使用者、組織、軟體庫的動態，對軟體代碼的改動和bug提出評論等。GitHub也提供了圖表功能，用於概觀顯示開發者們怎樣在代碼庫上工作以及軟體的開發活躍程度。`,
     img: "http://wiki.csie.ncku.edu.tw/use-git-01.png",
+    refContent: "Github使用文件",
+    refUrl: "https://docs.github.com/cn/get-started",
   },
 };
 export const fehId_00005 = "fehId_00005";
@@ -77,6 +85,8 @@ export const InsSourceTreeContent = {
     一些先進的功能，如補丁處理、rebase、shelve、cherry picking等
     可以連接到你託管在Bitbucket、Stash、Microsoft TFS或GitHub中的代碼庫`,
     img: "https://blog.sourcetreeapp.com/files/2019/01/1a-768x488.png",
+    refContent: "SourceTree使用文件",
+    refUrl: " https://www.sourcetreeapp.com/",
   },
 };
 

@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import Instruction from "../components/Instruction.vue";
+
 export default {
   components: {
     Instruction,
@@ -10,12 +11,24 @@ export default {
     console.log("vue");
     const route = useRoute();
     const fehId = ref(route.params.fehId);
+
     return { fehId };
   },
 };
 </script>
 <template>
-  <instruction :fehId="fehId" />
+  <div class="container">
+    <instruction class="item" :fehId="fehId" />
+    <div class="item">123</div>
+  </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  .item {
+    flex: 1;
+  }
+}
+</style>

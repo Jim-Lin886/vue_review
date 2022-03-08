@@ -1,47 +1,41 @@
 <script>
-import { useI18n } from "vue-i18n";
-import { computed, reactive } from "vue";
+import { computed, reactive, config } from "vue";
 import { useStore } from "vuex";
 import { item_tw, item_en } from "../i18n";
 export default {
   setup() {
-    const { t } = useI18n();
     const store = useStore();
     const langList = reactive([item_tw, item_en]);
+    console.log("handChangeg", langList);
 
     const handChange = (val) => {
-      console.log("handChangeg", val);
       selectLang = val.code;
     };
 
-    const selectLangxxx = ref("");
     const selectLang = computed({
       get: () => {
-        store.getters.getLang;
+        return store.getters.getLang;
       },
       set: (val) => {
-        // store.dispatch("commitLang", val);
+        store.dispatch("commitLang", val);
       },
     });
 
-    return { t, langList, selectLang, handChange, selectLang };
+    return { langList, selectLang, handChange };
   },
 };
 </script>
 <template>
-  <el-select
-    v-model="selectLangxxx"
-    :placeholder="$t('message.select')"
-    @change="handChange"
-    ><el-option
+  <el-select v-model="selectLang" :placeholder="$t('message.select')">
+    <el-option
       v-for="item in langList"
-      :key="item.code"
-      :label="item.key"
-      :value="code"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
     >
-      <span>{{ `${item.code}-${item.key}` }}</span>
-    </el-option></el-select
-  >
+      <span>{{ `${item.label}-${item.value}` }}</span>
+    </el-option>
+  </el-select>
 </template>
 
 <style></style>

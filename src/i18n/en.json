@@ -6,6 +6,9 @@
   "label.account": "Account",
   "label.password": "Password",
   "label.selectLang": "Select Language",
+  "label.menu": "Menu",
+  "label.setting": "Setting",
+  "label.home": "Home",
 
   "message.inputAccount": " Please input Account",
   "message.inputPassword": "Please input Password",

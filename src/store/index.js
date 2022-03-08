@@ -1,9 +1,9 @@
 import { createStore } from "vuex";
-import { useI18n } from "vue-i18n";
+import i18n from "../i18n";
 
 export default createStore({
   state: {
-    lang: "tw",
+    lang: "zh_tw",
     isOpenMenu: false,
   },
   getters: {
@@ -11,17 +11,13 @@ export default createStore({
     getIsOpenMenu: (state) => state.isOpenMenu,
   },
   mutations: {
-    pushLang(state, payload0) {
+    pushLang(state, payload) {
       state.lang = payload;
-      const { t, locale } = useI18n({ useScpoe: "global" });
-      locale.value = payload;
+      i18n.global.locale = payload;
+      // console.log("i18n111", i18n.global.locale);
     },
     pushIsOpenMenu(state, payload) {
       state.isOpenMenu = payload;
-      // console.log("pushIsOpenMenu", state.isOpenMenu);
-      //123
-      //456
-      //test branch:feature/tabbar
     },
   },
   actions: {
@@ -31,7 +27,7 @@ export default createStore({
     commitIsOpenMenu({ commit, getters }) {
       let isRever = !getters.getIsOpenMenu;
       commit("pushIsOpenMenu", isRever);
-      // console.log("commitIsOpenMenu", getters.getIsOpenMenu);
+      // console.log("commitIsOpenMenu", isRever);
     },
   },
   modules: {},

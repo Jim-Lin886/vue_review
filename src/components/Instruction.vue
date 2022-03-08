@@ -20,12 +20,7 @@ export default {
       console.log(fehData);
     });
 
-    // watch(
-    //   () => props.fehId,
-    //   (val, oldVal) => {
-    //     console.log("watch-props.fehId", val);
-    //   }
-    // );
+    console.log();
     return { fehData };
   },
 };
@@ -33,56 +28,38 @@ export default {
 <template>
   <div class="container">
     <h1 class="title">{{ fehData.data.title }}</h1>
-    <div class="container2">
-      <p>{{ fehData.data.content }}</p>
-      <!-- <img :src="fehData.data.img" alt="" /> -->
-      <el-image :src="fehData.data.img">
-        <template #error>
-          <div>
-            <el-icon><icon-picture /></el-icon>
-          </div>
-        </template>
-      </el-image>
-    </div>
-    <!-- <a href="http://https://v3.cn.vuejs.org/">參考官方</a> -->
+    <p>{{ fehData.data.content }}</p>
+    <!-- <img :src="fehData.data.img" alt="" /> -->
+    <el-image :src="fehData.data.img"> </el-image>
+    <a v-if="fehData.data.refUrl || false" :href="fehData.data.refUrl">{{
+      fehData.data.refContent
+    }}</a>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  justify-content: start;
   width: 100%;
-  margin: 20px;
-  // justify-items: center;
+  margin: 0px;
+  padding: 20px;
   text-align: left;
+  box-sizing: border-box;
 }
 
 h1 {
-  flex: auto;
+  width: 100%;
+  color: #3d3d3d;
   margin: 0px;
   font-size: 36px;
   font-weight: bold;
 }
 
-.container2 {
-  display: flex;
-  // flex-direction: column;
-  P {
-    flex: auto;
-    padding: 10px;
-  }
-  img {
-    flex-basis: 300px;
-  }
-}
 a {
+  text-decoration: none;
   font-style: italic;
-}
-
-.image-slot {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
 }
 </style>
