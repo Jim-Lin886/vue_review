@@ -15,7 +15,8 @@
     "vue": "^3.0.0",
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.15",
@@ -30,5 +31,18 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jim-Lin886/vue_review.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jim-Lin886/vue_review/issues"
+  },
+  "homepage": "https://github.com/Jim-Lin886/vue_review#readme"
 }

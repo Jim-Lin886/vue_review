@@ -7,12 +7,14 @@ import {
 import NotFound from "../components/NotFound.vue";
 import Login from "../components/Login.vue";
 import InsHome from "../views/InsHome.vue";
+import InsAxios from "../views/InsAxios.vue";
 import InsVue from "../views/InsVue.vue";
 import InsVuex from "../views/InsVuex.vue";
 import InsVueRouter from "../views/InsVueRouter.vue";
 import InsGitHub from "../views/InsGitHub.vue";
 import InsSourceTree from "../views/InsSourceTree.vue";
 
+export const Route_AXIOS = "insAxios";
 export const Route_VUE = "insVue";
 export const Route_VUEX = "insVuex";
 export const Route_VUE_ROUTER = "insVueRouter";
@@ -33,6 +35,10 @@ const routes = [
       {
         path: "",
         component: InsHome,
+      },
+      {
+        path: `${Route_AXIOS}/:fehId`,
+        component: InsAxios,
       },
       {
         path: `${Route_VUE}/:fehId`,

@@ -87,18 +87,17 @@ instance.interceptors.response.use(
   }
 );
 
-export function getWeatherOfKH(townname) {
+export function getWeatherOfKH(cityName, townname) {
   return instance
-    .get("F-D0047-067", {
+    .get("F-D0047-093", {
       params: {
         Authorization: "CWB-BB5E0510-6698-4BF9-87FF-52ED85F6418D",
-        locationName: "左營區,三民區",
+        locationId: cityName,
+        locationName: townname,
       },
     })
-    .then((res) => {
-      console.log("getWeatherOfKH", res.data);
-    })
-    .catch((error) => {});
+    .then((res) => res)
+    .catch((error) => error);
 }
 
 const countyInstance = axios.create({
@@ -132,16 +131,15 @@ countyInstance.interceptors.response.use(
 );
 
 export function getCityList() {
-  console.log("getCityList", countyInstance);
   return countyInstance
     .get("/ListCounty")
-    .then((res) => {})
-    .catch((errer) => {});
+    .then((res) => res)
+    .catch((errer) => errer);
 }
 
 export function getTownList(cityNo) {
   return countyInstance
-    .get("/ListTown1", { name: cityNo })
-    .then((res) => {})
-    .catch((errer) => {});
+    .get(`/ListTown1/${cityNo}`)
+    .then((res) => res)
+    .catch((errer) => errer);
 }

@@ -9,6 +9,9 @@
   "label.menu": "清單",
   "label.setting": "設定",
   "label.home": "首頁",
+  "label.city": "縣/市",
+  "label.town": "鄉/鎮/區",
+  "label.example": "範例",
 
   "message.inputAccount": "請輸入帳號",
   "message.inputPassword": "請輸入密碼",

@@ -6,7 +6,6 @@ export default {
   setup() {
     const store = useStore();
     const langList = reactive([item_tw, item_en]);
-    console.log("handChangeg", langList);
 
     const handChange = (val) => {
       selectLang = val.code;

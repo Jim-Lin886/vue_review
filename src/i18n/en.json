@@ -9,6 +9,9 @@
   "label.menu": "Menu",
   "label.setting": "Setting",
   "label.home": "Home",
+  "label.city": "City",
+  "label.town": "Town",
+  "label.example": "Example",
 
   "message.inputAccount": " Please input Account",
   "message.inputPassword": "Please input Password",

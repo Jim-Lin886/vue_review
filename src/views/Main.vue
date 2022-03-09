@@ -4,6 +4,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { Setting, Menu, HomeFilled, TurnOff } from "@element-plus/icons-vue";
 import {
+  Route_AXIOS,
   Route_VUE,
   Route_VUEX,
   Route_VUE_ROUTER,
@@ -50,6 +51,7 @@ export default {
         { path: Route_VUE_ROUTER },
         { path: Route_GITHUB },
         { path: Route_SOURCE_TREE },
+        { path: Route_AXIOS },
       ];
       let routerType = ary[index]["path"];
       let fehId = getFehIdByType(routerType) || "";
@@ -213,6 +215,17 @@ export default {
                 />
               </el-icon>
               <template #title>Vue Router4</template>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <!-- <el-icon><icon-setting /></el-icon> -->
+              <el-icon>
+                <img
+                  style="width: 30px; height: 30px"
+                  alt=""
+                  src="../assets/images/axios.png"
+                />
+              </el-icon>
+              <template #title>Axios</template>
             </el-menu-item>
             <el-sub-menu index="">
               <template #title>

@@ -1,11 +1,8 @@
 <script>
-import { reactive, watch } from "vue";
-import { picture } from "@element-plus/icons-vue";
+import { reactive } from "vue";
 import { getInsVueContentById } from "../assets/data/InstructionController.js";
 export default {
-  components: {
-    iconPicture: picture,
-  },
+  components: {},
   props: {
     fehId: {
       type: String,
@@ -17,23 +14,34 @@ export default {
 
     getInsVueContentById(props.fehId).then((res) => {
       fehData.data = res.data;
-      console.log(fehData);
+      // console.log(fehData);
     });
 
+    const handLinkClick = (e) => {
+      // console.log("handLinkClick", e);
+      window.open(fehData.data.refUrl, "");
+      return false;
+    };
+
     console.log();
-    return { fehData };
+    return { fehData, handLinkClick };
   },
 };
 </script>
 <template>
   <div class="container">
     <h1 class="title">{{ fehData.data.title }}</h1>
+
+    <a
+      v-if="fehData.data.refUrl || false"
+      :href="fehData.data.refUrl"
+      @click.prevent="handLinkClick"
+      >{{ fehData.data.refContent }}</a
+    >
     <p>{{ fehData.data.content }}</p>
     <!-- <img :src="fehData.data.img" alt="" /> -->
-    <el-image :src="fehData.data.img"> </el-image>
-    <a v-if="fehData.data.refUrl || false" :href="fehData.data.refUrl">{{
-      fehData.data.refContent
-    }}</a>
+    <el-image v-if="fehData.data.img || false" :src="fehData.data.img">
+    </el-image>
   </div>
 </template>
 

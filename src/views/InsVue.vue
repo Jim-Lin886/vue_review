@@ -7,7 +7,6 @@ export default {
     Instruction,
   },
   setup() {
-    console.log("vue");
     const route = useRoute();
     const fehId = ref(route.params.fehId);
     return { fehId };
@@ -17,10 +16,7 @@ export default {
 <template>
   <div class="container">
     <instruction class="item" :fehId="fehId" />
-    <el-divider
-      style="height: 100px; width: 10px"
-      direction="vertical"
-    ></el-divider>
+    <hr class="divider" />
     <div class="item">333</div>
   </div>
 </template>
@@ -28,9 +24,16 @@ export default {
 <style lang="scss" scoped>
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   .item {
     flex: 1;
   }
+}
+
+hr.divider {
+  border: 0;
+  width: 2px;
+  background: #333;
+  background-image: linear-gradient(to right, #fff, #ccc, #fff);
 }
 </style>
