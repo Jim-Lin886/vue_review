@@ -12,6 +12,9 @@
   "label.city": "City",
   "label.town": "Town",
   "label.example": "Example",
+  "label.logged": "logged",
+  "label.minuts": "m",
+  "label.second": "s",
 
   "message.inputAccount": " Please input Account",
   "message.inputPassword": "Please input Password",

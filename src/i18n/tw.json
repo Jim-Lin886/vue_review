@@ -12,6 +12,9 @@
   "label.city": "縣/市",
   "label.town": "鄉/鎮/區",
   "label.example": "範例",
+  "label.logged": "已登入",
+  "label.minuts": "分",
+  "label.second": "秒",
 
   "message.inputAccount": "請輸入帳號",
   "message.inputPassword": "請輸入密碼",

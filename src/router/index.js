@@ -5,7 +5,7 @@ import {
 } from "vue-router";
 
 import NotFound from "../components/NotFound.vue";
-import Login from "../components/Login.vue";
+import Login from "../views/Login.vue";
 import InsHome from "../views/InsHome.vue";
 import InsAxios from "../views/InsAxios.vue";
 import InsVue from "../views/InsVue.vue";

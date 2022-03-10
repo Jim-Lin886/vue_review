@@ -12,11 +12,13 @@ import {
   Route_SOURCE_TREE,
 } from "@/router";
 import { getFehIdByType } from "@/assets/data/InstructionController.js";
+import LoginLabel from "../components/LoginLabel.vue";
 import LanguageChooser from "../components/LanguageChooser.vue";
 
 export default {
   components: {
     IconHome: HomeFilled,
+    LoginLabel,
     LanguageChooser,
   },
   setup() {
@@ -35,6 +37,9 @@ export default {
         store.dispatch("commitIsOpenMenu");
       },
     });
+
+    const objUser = computed(() => store.getters.getObjUser);
+
     const handMenuOpen = (key, keyPath) => {
       // console.log(key, keyPath);
       // console.log("handMenuOpen");
@@ -70,7 +75,8 @@ export default {
       // console.log("handBtnOpenMenu", store);
     };
     const handLogout = () => {
-      router.push({ path: "/" });
+      router.push("/");
+      store.dispatch("commitObjUser", {});
     };
     const handGithub = () => {
       window.open("https://github.com/Jim-Lin886/vue_review");
@@ -81,6 +87,7 @@ export default {
       IconSetting,
       iconTurnOff,
       isOpenMenu,
+      objUser,
       handMenuOpen,
       handMenuClose,
       handMenuSelect,
@@ -119,6 +126,8 @@ export default {
             </el-col>
             <el-col :span="20">
               <div class="toolbar-left">
+                <loginLabel :objUser="objUser" />
+
                 <el-popover placement="bottom" :width="400" trigger="click">
                   <template #reference>
                     <el-button
@@ -206,7 +215,6 @@ export default {
               <template #title>Vuex4</template>
             </el-menu-item>
             <el-menu-item index="3">
-              <!-- <el-icon><icon-setting /></el-icon> -->
               <el-icon>
                 <img
                   style="width: 30px; height: 30px"
@@ -217,7 +225,6 @@ export default {
               <template #title>Vue Router4</template>
             </el-menu-item>
             <el-menu-item index="6">
-              <!-- <el-icon><icon-setting /></el-icon> -->
               <el-icon>
                 <img
                   style="width: 30px; height: 30px"
@@ -229,7 +236,6 @@ export default {
             </el-menu-item>
             <el-sub-menu index="">
               <template #title>
-                <!-- <el-icon><icon-location /></el-icon> -->
                 <el-icon>
                   <img
                     style="width: 30px; height: 30px"
@@ -308,6 +314,7 @@ export default {
       .toolbar-left {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
       }
     }
   }

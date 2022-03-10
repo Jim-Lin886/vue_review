@@ -1,13 +1,19 @@
 <script>
-import { ref, reactive } from "@vue/reactivity";
+import { ref, reactive } from "vue";
 import { CircleCheck, CircleClose } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
+import {
+  getUserByAccountId,
+  routerPush,
+} from "../assets/data/UserInfoController.js";
+import { useStore } from "vuex";
 export default {
   setup() {
     const iconCheck = CircleCheck;
     const iconClose = CircleClose;
     const router = useRouter();
+    const store = useStore();
     const { t } = useI18n();
 
     const formRef = ref();
@@ -15,7 +21,7 @@ export default {
     const objLogin = reactive({ account: "", password: "" });
 
     const validateAccount = (rule, value, callback) => {
-      console.log("validateAccount");
+      // console.log("validateAccount");
       if (value === "") {
         callback(new Error(t("message.inputAccount")));
 
@@ -57,8 +63,21 @@ export default {
       passwordRef.value.focus();
     };
 
-    const fnLogin = () => {
-      router.push({ path: "/main" });
+    const fnLogin = async () => {
+      try {
+        const user = await getUserByAccountId(
+          objLogin.account,
+          objLogin.password
+        );
+        if (user && user.length > 0) {
+          router.push({ path: "/main" });
+          store.dispatch("commitObjUser", user[0]);
+        } else {
+          store.dispatch("commitObjUser", user);
+        }
+      } catch (error) {
+        // console.log("getUserByAccountId", error);
+      }
     };
 
     return {

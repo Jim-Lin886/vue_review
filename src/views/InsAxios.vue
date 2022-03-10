@@ -43,10 +43,11 @@ export default {
     };
 
     const fnGetTowList = async (cityCode) => {
-      //"63000"
-      const { data } = await apiGetTownList(cityCode);
-      fnProcTownList(data);
-      // console.log("apiGetTownList", data);
+      try {
+        const { data } = await apiGetTownList(cityCode);
+        fnProcTownList(data);
+        // console.log("apiGetTownList", data);
+      } catch (error) {}
     };
 
     const fnGetWeatherOfKH = () => {
@@ -58,13 +59,14 @@ export default {
     };
 
     const fnProcCityList = async (data) => {
-      const obj = await xmlToJson(data);
-      cityList.data = obj.countyItems.countyItem;
-      // console.log("fnProcCityList", cityList);
+      try {
+        const obj = await xmlToJson(data);
+        cityList.data = obj.countyItems.countyItem;
+        // console.log("fnProcCityList", cityList);
+      } catch (error) {}
     };
 
     const fnProcTownList = (data) => {
-      // const obj = await xmlToJson(data);
       townList.data = data;
       // console.log("fnProcTownList", data);
     };
@@ -175,15 +177,15 @@ export default {
 <style lang="scss" scoped>
 .container {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 10px;
   .item {
     flex: 1;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 10px;
   }
-  .keepLeft {
-  }
+  // .keepLeft {
+  // }
 }
 
 hr.divider {

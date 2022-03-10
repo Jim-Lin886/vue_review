@@ -50,7 +50,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-end;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100%;
   margin: 0px;
   padding: 20px;
