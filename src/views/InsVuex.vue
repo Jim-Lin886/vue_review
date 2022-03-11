@@ -27,13 +27,13 @@ export default {
       <h1>&#64;{{ $t("label.example") }}</h1>
       <ul>
         <li style="font-weight: bold">
-          修改Vuex中使用者資料狀態，存檔後右上患者資訊同步更新:
+          修改Vuex中使用者資料狀態，存檔後右上使用者資料同步更新:
         </li>
       </ul>
       <ol>
         <li>建立Vuex實體</li>
-        <li>dispatch修改使用者資料Action</li>
-        <li>commit修改使用者資料mutation事件</li>
+        <li>dispatch 修改後使用者資料的 Action</li>
+        <li>commit 修改後使用者資料的 mutation</li>
       </ol>
       <user-info :readMode="false" />
     </div>
