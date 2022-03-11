@@ -38,8 +38,6 @@ export default {
       },
     });
 
-    const objUser = computed(() => store.getters.getObjUser);
-
     const handMenuOpen = (key, keyPath) => {
       // console.log(key, keyPath);
       // console.log("handMenuOpen");
@@ -87,7 +85,6 @@ export default {
       IconSetting,
       iconTurnOff,
       isOpenMenu,
-      objUser,
       handMenuOpen,
       handMenuClose,
       handMenuSelect,
@@ -126,7 +123,7 @@ export default {
             </el-col>
             <el-col :span="20">
               <div class="toolbar-left">
-                <loginLabel :objUser="objUser" />
+                <login-label :hasTimer="true" />
 
                 <el-popover placement="bottom" :width="400" trigger="click">
                   <template #reference>
@@ -287,7 +284,7 @@ export default {
 
   #main-right {
     // height: 100%;
-    // width: 100%;
+    width: 100%;
     overflow: auto;
     // flex-basis: 100%;
   }

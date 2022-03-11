@@ -16,8 +16,6 @@ export default {
 <template>
   <div class="container">
     <instruction class="item" :fehId="fehId" />
-    <hr class="divider" />
-    <div class="item">333</div>
   </div>
 </template>
 
@@ -28,12 +26,5 @@ export default {
   .item {
     flex: 1;
   }
-}
-
-hr.divider {
-  border: 0;
-  width: 2px;
-  background: #333;
-  background-image: linear-gradient(to right, #fff, #ccc, #fff);
 }
 </style>

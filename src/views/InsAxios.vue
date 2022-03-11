@@ -135,8 +135,11 @@ export default {
   <div class="container">
     <instruction class="item" :fehId="fehId" />
     <hr class="divider" />
-    <div class="item keepLeft">
+    <div class="item">
       <h1>&#64;{{ $t("label.example") }}</h1>
+      <ul>
+        <li style="font-weight: bold">透過Axios呼叫API取得資料</li>
+      </ul>
       <ol>
         <li>建立兩個Axios實體:國土測繪中心、氣象資料開放平臺。</li>
         <li>透過國土測繪中心提供API取得縣市和鄉鎮區清單。</li>
@@ -184,8 +187,6 @@ export default {
     justify-content: flex-start;
     padding: 10px;
   }
-  // .keepLeft {
-  // }
 }
 
 hr.divider {

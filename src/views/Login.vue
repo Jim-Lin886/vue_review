@@ -3,10 +3,7 @@ import { ref, reactive } from "vue";
 import { CircleCheck, CircleClose } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import {
-  getUserByAccountId,
-  routerPush,
-} from "../assets/data/UserInfoController.js";
+import { getUserByAccountId } from "../assets/data/UserInfoController.js";
 import { useStore } from "vuex";
 export default {
   setup() {
@@ -19,6 +16,7 @@ export default {
     const formRef = ref();
     const passwordRef = ref();
     const objLogin = reactive({ account: "", password: "" });
+    const hasLoading = ref(false);
 
     const validateAccount = (rule, value, callback) => {
       // console.log("validateAccount");
@@ -65,6 +63,7 @@ export default {
 
     const fnLogin = async () => {
       try {
+        hasLoading.value = true;
         const user = await getUserByAccountId(
           objLogin.account,
           objLogin.password
@@ -75,6 +74,7 @@ export default {
         } else {
           store.dispatch("commitObjUser", user);
         }
+        hasLoading.value = false;
       } catch (error) {
         // console.log("getUserByAccountId", error);
       }
@@ -85,6 +85,7 @@ export default {
       passwordRef,
       objLogin,
       rules,
+      hasLoading,
       handSummit,
       handReset,
       handAccountKeyEnter,
@@ -170,6 +171,7 @@ export default {
           <!-- <el-tooltip :content="$t('label.login')"> -->
           <!-- <template #content>{{ $t("label.login") }}</template> -->
           <el-button
+            v-loading.fullscreen.lock="hasLoading"
             type="primary"
             style="width: 70px; height: 70px"
             circle
@@ -191,6 +193,7 @@ export default {
           <!-- </el-tooltip> -->
         </el-form-item>
       </el-form>
+      <p>&#64;測試帳密:Jim/Jim</p>
     </div>
   </div>
 </template>

@@ -1,10 +1,11 @@
 import { integratedFetch, ERR_E0001, ERR_E0002 } from "./DataUtil.js";
 import {} from "../images/Jim.jpg";
+
 const userInfo = [
   {
     userName: "Jim Lin",
     age: "30",
-    gander: "Male",
+    gender: "M",
     phone: "08-852741963",
     accountId: "1",
     password: "1",
@@ -13,7 +14,7 @@ const userInfo = [
   {
     userName: "Jim Lin",
     age: "30",
-    gander: "Male",
+    gender: "M",
     phone: "08-852741963",
     accountId: "Jim",
     password: "Jim",
@@ -22,7 +23,7 @@ const userInfo = [
   {
     userName: "Abby Huang",
     age: "18",
-    gander: "Female",
+    gender: "F",
     phone: "07-75924155",
     accountId: "Abby",
     password: "Abby",
@@ -31,7 +32,7 @@ const userInfo = [
   {
     userName: "Tony Stark",
     age: "45",
-    gander: "Male",
+    gender: "M",
     phone: "",
     accountId: "Tony",
     password: "Tony",
@@ -48,4 +49,13 @@ export const getUserByAccountId = (id, psw) => {
     errCode = ERR_E0002;
   }
   return integratedFetch(user, errCode, 500);
+};
+
+export const updateUserInfo = (data, store, delay = 1000) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      store.dispatch("commitObjUser", data);
+      return resolve(JSON.parse(JSON.stringify(data)));
+    }, delay);
+  });
 };

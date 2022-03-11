@@ -18,6 +18,7 @@ export const InsVueContent = {
     另一方面，當與現代化的工具鏈以及各種支持類庫結合使用時，Vue 也完全能夠為複雜的單頁應用提供驅動。
     如果你想在深入學習 Vue 之前對它有更多了解，我們製作了一個視頻，帶你了解其核心概念和一個示例工程。`,
     img: "https://book.vue.tw/assets/img/1-1-vue-logo.402955e1.png",
+    imgContent: "圖片來源:https://book.vue.tw/",
     refContent: "Vue3使用文件",
     refUrl: "https://v3.cn.vuejs.org/",
   },
@@ -29,6 +30,7 @@ export const InsVuexContent = {
     title: "Vuex",
     content: `Vuex 是一個專為 Vue.js 應用程序開發的狀態管理模式 + 庫。它採用集中式存儲管理應用的所有組件的狀態，並以相應的規則保證狀態以一種可預測的方式發生變化。`,
     img: "https://vuex.vuejs.org/flow.png",
+    imgContent: "圖片來源:https://vuex.vuejs.org/",
     refContent: "Vuex4使用文件",
     refUrl: "https://vuex.vuejs.org/zh/guide/",
   },
@@ -41,7 +43,9 @@ export const InsVueRouterContent = {
     content: `Vue Router 是 Vue.js 的官方路由。它與 Vue.js 核心深度集成，讓用 Vue.js 構建單頁應用變得輕而易舉。功能包括：
     嵌套路由映射、動態路由選擇、模塊化和基於組件的路由配置、路由參數、展示由 Vue.js 的過渡系統提供的過渡效果、細緻的導航控制、自動激活 CSS 類的鏈接、
     HTML5 history 模式或 hash 模式、可定制的滾動行為、URL 的正確編碼。`,
-    img: "https://miro.medium.com/max/1400/1*rHC1ENA5eA5buxmnwHL76Q.jpeg",
+    img: "https://i.imgur.com/MUt7P2C.png",
+    imgContent:
+      "圖片來源:https://cynthiachuang.github.io/Vue-Router-Passing-Props-to-Route-Components/",
     refContent: "Vuex-Router4使用文件",
     refUrl: "https://router.vuejs.org/zh/guide/",
   },
@@ -55,6 +59,7 @@ export const InsGithubContent = {
     GitHub同時提供付費帳戶和免費帳戶。這兩種帳戶都可以建立公開或私有的代碼倉庫，但付費使用者擁有更多功能。根據在2009年的Git使用者調查，GitHub是最流行的Git存取站點。[2]除了允許個人和組織建立和存取保管中的代碼以外，
     它也提供了一些方便社會化共同軟體開發的功能，即一般人口中的社群功能，包括允許使用者追蹤其他使用者、組織、軟體庫的動態，對軟體代碼的改動和bug提出評論等。GitHub也提供了圖表功能，用於概觀顯示開發者們怎樣在代碼庫上工作以及軟體的開發活躍程度。`,
     img: "http://wiki.csie.ncku.edu.tw/use-git-01.png",
+    imgContent: "圖片來源:http://wiki.csie.ncku.edu.tw/",
     refContent: "Github使用文件",
     refUrl: "https://docs.github.com/cn/get-started",
   },
@@ -73,6 +78,7 @@ export const InsSourceTreeContent = {
     一些先進的功能，如補丁處理、rebase、shelve、cherry picking等
     可以連接到你託管在Bitbucket、Stash、Microsoft TFS或GitHub中的代碼庫`,
     img: "https://blog.sourcetreeapp.com/files/2019/01/1a-768x488.png",
+    imgContent: "圖片來源:https://blog.sourcetreeapp.com/",
     refContent: "SourceTree使用文件",
     refUrl: " https://www.sourcetreeapp.com/",
   },
@@ -86,6 +92,7 @@ export const InsAxiosContent = {
     content: `Axios 是一個基於 promise 網絡請求庫，作用於node.js 和瀏覽器中。它是 isomorphic 的(即同一套代碼可以運行在瀏覽器和node.js中)。在服務端它使用原生 node.js http 模塊, 而在客戶端 (瀏覽端) 則使用 XMLHttpRequests。特性:從瀏覽器創建XMLHttpRequests、從node.js創建 http 請求、支持 Promise API
     攔截請求和響應、轉換請求和響應數據、取消請求、自動轉換JSON數據、客戶端支持防禦XSRF。`,
     img: "",
+    imgContent: "",
     refContent: "Axios使用文件",
     refUrl: "https://axios-http.com/zh/docs/instance",
   },

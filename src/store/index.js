@@ -1,7 +1,4 @@
 import { createStore } from "vuex";
-// import { useRouter } from "vue-router";
-import router from "../store";
-import i18n from "../i18n";
 
 export default createStore({
   state: {
@@ -13,6 +10,7 @@ export default createStore({
     getLang: (state) => state.lang,
     getIsOpenMenu: (state) => state.isOpenMenu,
     getObjUser: (state) => state.objUser,
+    // getObjUser: (state) => JSON.parse(JSON.stringify(state.objUser)),
   },
   mutations: {
     pushLang(state, payload) {
@@ -36,15 +34,9 @@ export default createStore({
       commit("pushIsOpenMenu", isRever);
     },
     commitObjUser({ commit }, payload) {
-      // const router = useRouter();
-      // console.log(router);
       if (null === payload || {} === payload) {
-        // console.log("xx");
-        // router.push("/");
         commit("pushObjUser", {});
       } else {
-        // console.log("oo");
-        // router.push({ path: "/main" });
         commit("pushObjUser", payload);
       }
     },

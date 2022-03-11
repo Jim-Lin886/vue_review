@@ -1,41 +1,68 @@
 <script>
 import { UserFilled } from "@element-plus/icons-vue";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, computed, watch } from "vue";
+import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import { msFormat } from "./FormatUtil.js";
-// import Jim from "../assets/images/Jim.jpg";
+
+import UserInfo from "../views/form/UserInfo.vue";
+
 export default {
+  components: {
+    UserInfo,
+  },
   props: {
-    objUser: {
-      type: Object,
-      default: {},
+    hasTimer: {
+      type: Boolean,
+      default: true,
     },
   },
   setup(props) {
     const iconUserFilled = UserFilled;
-    const { objUser } = props;
+    const store = useStore();
     const { t } = useI18n();
+    const { hasTimer } = props;
+    const isShowEditor = ref(false);
+
+    const objUser = computed(() => store.getters.getObjUser);
 
     const logTime = ref(0);
     const logTimeFormat = ref("");
     let timer = null;
 
-    // const imgUrl = ref(require("../assets/images/Jim.jpg"));
+    const handUserNameClick = () => {
+      isShowEditor.value = true;
+    };
+
+    const handClickCancel = (val) => {
+      isShowEditor.value = false;
+    };
+
     onMounted(() => {
       logTime.value = 0;
-      timer = setInterval(() => {
-        logTime.value += 1;
-        console.log("onMounted");
-        console.log(msFormat);
-        logTimeFormat.value = msFormat(logTime.value, t);
-      }, 1000);
+      if (hasTimer) {
+        timer = setInterval(() => {
+          logTime.value += 1;
+          logTimeFormat.value = msFormat(logTime.value, t);
+        }, 1000);
+      }
     });
 
     onUnmounted(() => {
-      clearInterval(timer);
+      if (null !== timer) {
+        clearInterval(timer);
+      }
     });
 
-    return { iconUserFilled, objUser, logTimeFormat };
+    // const imgUrl = ref(require("../assets/images/Jim.jpg"));
+    return {
+      iconUserFilled,
+      objUser,
+      isShowEditor,
+      logTimeFormat,
+      handUserNameClick,
+      handClickCancel,
+    };
   },
 };
 </script>
@@ -46,11 +73,32 @@ export default {
       :icon="iconUserFilled"
       :src="objUser.img"
     ></el-avatar>
-    <h1>
-      {{ `${objUser.userName}  ` }}<br />{{ $t("label.logged") }}:
-      {{ logTimeFormat }}
-    </h1>
+    <div>
+      <h2 class="text" @click="handUserNameClick">
+        {{ `${objUser.userName}` }}
+      </h2>
+      <h3 class="text" v-if="hasTimer">
+        {{ $t("label.logged") }}: {{ logTimeFormat }}
+      </h3>
+    </div>
   </div>
+  <el-dialog
+    id="diag"
+    v-if="isShowEditor"
+    v-model="isShowEditor"
+    :title="$t('label.userInfo')"
+  >
+    <user-info :readMode="false" @userinfoClickCancel="handClickCancel" />
+
+    <!-- <template #footer>
+      <span>
+        <el-button @click="handCancelClick">{{ $t("label.cancel") }}</el-button>
+        <el-button @click="handConfirmClick">{{
+          $t("label.confirm")
+        }}</el-button>
+      </span>
+    </template> -->
+  </el-dialog>
 </template>
 
 <style lang="scss" scoped>
@@ -58,8 +106,20 @@ export default {
   display: flex;
   align-items: center;
   width: 200px;
-  h1 {
-    padding-left: 20px;
+  div {
+    margin: 0px;
   }
+  h2 {
+    text-decoration: underline;
+    padding-bottom: 10px;
+  }
+  .text {
+    padding: 0px 10px 0px 10px;
+    margin: 0;
+  }
+}
+
+#diag {
+  position: absolute;
 }
 </style>

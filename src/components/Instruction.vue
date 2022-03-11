@@ -42,6 +42,14 @@ export default {
     <!-- <img :src="fehData.data.img" alt="" /> -->
     <el-image v-if="fehData.data.img || false" :src="fehData.data.img">
     </el-image>
+
+    <p
+      class="imgContent"
+      v-if="fehData.data.imgContent || false"
+      :src="fehData.data.imgContent"
+    >
+      {{ fehData.data.imgContent }}
+    </p>
   </div>
 </template>
 
@@ -69,5 +77,10 @@ h1 {
 a {
   text-decoration: none;
   font-style: italic;
+}
+
+.imgContent {
+  color: #a4b0be;
+  font-size: 12;
 }
 </style>
