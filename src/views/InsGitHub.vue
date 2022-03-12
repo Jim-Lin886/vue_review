@@ -15,7 +15,28 @@ export default {
 };
 </script>
 <template>
-  <instruction :fehId="fehId" />
+  <div class="container">
+    <instruction class="item" :fehId="fehId" />
+  </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+.container {
+  width: 100%;
+  height: 100%;
+  background: #ecf0f1;
+  position: relative;
+  text-align: left;
+}
+.item {
+  width: 70%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px;
+  background: #fff;
+}
+</style>

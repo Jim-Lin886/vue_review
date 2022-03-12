@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import i18n from "../i18n";
 
 export default createStore({
   state: {
@@ -15,6 +16,7 @@ export default createStore({
   mutations: {
     pushLang(state, payload) {
       state.lang = payload;
+      console.log("mutations", i18n);
       i18n.global.locale = payload;
     },
     pushIsOpenMenu(state, payload) {

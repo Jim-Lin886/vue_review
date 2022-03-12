@@ -6,12 +6,12 @@ export default {};
     <div class="item">
       <h1>{{ $t("label.description") }}</h1>
       <p>
-        該網站使用Vue框架，結合官方推薦的生態系統插件和其他第三方插件開發。用意在整合學習到的技術應用於實務上和熟悉工具的使用。
+        該網站使用Vue框架，結合官方推薦的周邊插件和其他第三方插件開發。用意在於將學習到的技術整合應用於實務上，能讓工具的使用更加熟悉。
       </p>
       <ul>
         <li>編輯器：VScode</li>
         <li>框架：Vue3</li>
-        <li>插件：Vuex、Vue-Router、AXIOS、Element-UI Plus</li>
+        <li>插件：Vuex、Vue-Router、AXIOS、Element-UI Plus、i18n</li>
         <li>版控：Git、Github、SourceTree</li>
       </ul>
       <img src="../assets/logo.png" alt="" />
@@ -23,7 +23,7 @@ export default {};
 .container {
   width: 100%;
   height: 100%;
-  background: #dcdde1;
+  background: #ecf0f1;
   position: relative;
   text-align: left;
 }

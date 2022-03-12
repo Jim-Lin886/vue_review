@@ -1,16 +1,19 @@
 const errMsg = {
   errCode: "E0000",
   errStr: "Occurred Error",
+  errType: "error",
 };
 export const ERR_E0001 = "E0001";
 const errAccountMsg = {
   errCode: ERR_E0001,
-  errStr: "Not found the account",
+  errStr: "Account is not found",
+  errType: "error",
 };
 export const ERR_E0002 = "E0002";
 const errPasswordMsg = {
   errCode: ERR_E0002,
   errStr: "Password is Error",
+  errType: "error",
 };
 
 export const integratedFetch = (data, errCode = null, delay = 1000) => {

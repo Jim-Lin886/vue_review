@@ -177,7 +177,7 @@ export default {
           <el-menu
             default-active="0"
             active-text-color="#ffd04b"
-            background-color="#545c64"
+            background-color="#2980b9"
             class="el-menu-vertical-demo"
             text-color="#fff"
             :collapse="isOpenMenu"
@@ -299,7 +299,7 @@ export default {
 
   .el-header {
     position: relative;
-    background-color: #b3c0d1;
+    background-color: #3498db;
     color: var(--el-text-color-primary);
     padding: 0px;
 

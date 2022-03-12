@@ -1,6 +1,7 @@
 <script>
 import { ref, reactive } from "vue";
 import { CircleCheck, CircleClose } from "@element-plus/icons-vue";
+import { ElMessageBox } from "element-plus";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { getUserByAccountId } from "../assets/data/UserInfoController.js";
@@ -47,7 +48,7 @@ export default {
       if (!formEl) return;
       formEl.validate((valid) => {
         if (valid) {
-          fnLogin();
+          fnBeforeLogin();
         } else {
           return false;
         }
@@ -61,7 +62,7 @@ export default {
       passwordRef.value.focus();
     };
 
-    const fnLogin = async () => {
+    const fnBeforeLogin = async () => {
       try {
         hasLoading.value = true;
         const user = await getUserByAccountId(
@@ -70,14 +71,26 @@ export default {
         );
         if (user && user.length > 0) {
           router.push({ path: "/main" });
-          store.dispatch("commitObjUser", user[0]);
+          fnLogined(user[0]);
         } else {
-          store.dispatch("commitObjUser", user);
+          fnLogined(user);
         }
-        hasLoading.value = false;
       } catch (error) {
+        try {
+          await ElMessageBox.alert(error.errStr, error.errType, {
+            type: error.errType,
+          });
+          fnLogined({});
+        } catch (error) {
+          fnLogined({});
+        }
         // console.log("getUserByAccountId", error);
       }
+    };
+
+    const fnLogined = (user) => {
+      store.dispatch("commitObjUser", user);
+      hasLoading.value = false;
     };
 
     return {

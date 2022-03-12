@@ -4,7 +4,7 @@ import {} from "../images/Jim.jpg";
 const userInfo = [
   {
     userName: "Jim Lin",
-    age: "30",
+    age: 30,
     gender: "M",
     phone: "08-852741963",
     accountId: "1",
@@ -13,7 +13,7 @@ const userInfo = [
   },
   {
     userName: "Jim Lin",
-    age: "30",
+    age: 30,
     gender: "M",
     phone: "08-852741963",
     accountId: "Jim",
@@ -22,7 +22,7 @@ const userInfo = [
   },
   {
     userName: "Abby Huang",
-    age: "18",
+    age: 18,
     gender: "F",
     phone: "07-75924155",
     accountId: "Abby",
@@ -31,7 +31,7 @@ const userInfo = [
   },
   {
     userName: "Tony Stark",
-    age: "45",
+    age: 45,
     gender: "M",
     phone: "",
     accountId: "Tony",

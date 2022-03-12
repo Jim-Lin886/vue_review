@@ -1,4 +1,5 @@
 <script>
+import { ElNotification } from "element-plus";
 import { ref, reactive, onMounted } from "vue";
 import { useStore } from "vuex";
 import { updateUserInfo } from "@/assets/data/UserInfoController.js";
@@ -40,6 +41,13 @@ export default {
         const result = await updateUserInfo(objUser.data, store);
         objUser.data = result;
         hasLoading.value = false;
+
+        ElNotification({
+          type: "success",
+          message: "Save success",
+          position: "bottom-right",
+        });
+
         handCancelClick();
         // emit("userinfoClickConfirm", "onConfirm");
       } catch (error) {}
