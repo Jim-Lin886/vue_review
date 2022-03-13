@@ -38,6 +38,21 @@ export default {};
   padding: 10px;
   background: #fff;
 }
+
+@media screen and (max-width: 700px), (orientation: portrait) {
+  .item {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 10px;
+    background: #fff;
+  }
+}
+
 h1 {
   font-size: 36px;
   font-weight: bold;
@@ -49,8 +64,7 @@ p {
 
 img {
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
 </style>

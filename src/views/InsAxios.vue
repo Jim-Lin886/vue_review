@@ -177,35 +177,4 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.container {
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px;
-  .item {
-    flex: 1;
-    justify-content: flex-start;
-    padding: 10px;
-  }
-}
-
-hr.divider {
-  border: 0;
-  width: 2px;
-  background: #333;
-  background-image: linear-gradient(to right, #fff, #ccc, #fff);
-}
-
-li {
-  text-align: left;
-}
-
-h1 {
-  width: 100%;
-  color: #3d3d3d;
-  margin: 0;
-  font-weight: bold;
-  font-size: 24;
-  text-align: left;
-}
-</style>
+<style lang="scss" src="../assets/style/instrunctionTwoRow.scss" scoped></style>
