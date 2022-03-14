@@ -1,6 +1,5 @@
 <script>
-import { ElNotification } from "element-plus";
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, computed, watch } from "vue";
 import { useStore } from "vuex";
 import { updateUserInfo } from "@/assets/data/UserInfoController.js";
 export default {
@@ -25,28 +24,43 @@ export default {
     },
   },
   setup(props, { emit }) {
+    /** vuex */
     const store = useStore();
+    /** 唯讀模式 */
     const { readMode } = props;
+    /** 標題寬度 */
     const labelWidth = ref(120);
+    /** 使用者資訊 */
     const objUser = reactive({ data: {} });
 
+    /** 加載圖示控制 */
     const hasLoading = ref(false);
 
+    // const objUser = computed(() => {
+    //   let xx = JSON.parse(JSON.stringify(store.getters.getObjUser));
+    //   return { data: { ...xx } };
+    // });
+
+    watch(
+      () => store.getters.getObjUser,
+      (val, oldVal) => {
+        objUser.data = JSON.parse(JSON.stringify(store.getters.getObjUser));
+      }
+    );
+
+    /** 按下取消:發送取消事件 */
     const handCancelClick = () => {
+      objUser.data = JSON.parse(JSON.stringify(store.getters.getObjUser));
       emit("userinfoClickCancel", "onCancel");
     };
+
+    /** 按下確認:修改使用者資訊 */
     const handConfirmClick = async () => {
       try {
         hasLoading.value = true;
         const result = await updateUserInfo(objUser.data, store);
-        objUser.data = result;
+        // objUser.data = { ...result.data };
         hasLoading.value = false;
-
-        ElNotification({
-          type: "success",
-          message: "Save success",
-          position: "bottom-right",
-        });
 
         handCancelClick();
         // emit("userinfoClickConfirm", "onConfirm");
@@ -54,8 +68,7 @@ export default {
     };
 
     onMounted(() => {
-      objUser.data = { ...store.getters.getObjUser };
-      console.log("onMounted");
+      objUser.data = JSON.parse(JSON.stringify(store.getters.getObjUser));
     });
 
     return {

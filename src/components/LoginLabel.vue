@@ -18,22 +18,33 @@ export default {
     },
   },
   setup(props) {
+    /** 使用者icon */
     const iconUserFilled = UserFilled;
+    /** vuex */
     const store = useStore();
+    /** i18n方法 */
     const { t } = useI18n();
+    /** 顯示登入時間 */
     const { hasTimer } = props;
+    /** 顯示編輯表單 */
     const isShowEditor = ref(false);
 
+    /** 登入者資訊 */
     const objUser = computed(() => store.getters.getObjUser);
 
+    /** 登入累計時間 */
     const logTime = ref(0);
+    /** 格式化登入累計時間 */
     const logTimeFormat = ref("");
+    /** 登入累計時間計數器 */
     let timer = null;
 
+    /** 按下使用者名稱:開啟編輯表單 */
     const handUserNameClick = () => {
       isShowEditor.value = true;
     };
 
+    /** 監聽userinfoClickCancel事件:關閉編輯表單 */
     const handClickCancel = (val) => {
       isShowEditor.value = false;
     };

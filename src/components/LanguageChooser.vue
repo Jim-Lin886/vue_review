@@ -4,13 +4,12 @@ import { useStore } from "vuex";
 import { item_tw, item_en } from "../i18n";
 export default {
   setup() {
+    /** vuex */
     const store = useStore();
+    /** 語系清單 */
     const langList = reactive([item_tw, item_en]);
 
-    const handChange = (val) => {
-      selectLang = val.code;
-    };
-
+    /** 當前選擇語系 */
     const selectLang = computed({
       get: () => {
         return store.getters.getLang;
@@ -20,7 +19,7 @@ export default {
       },
     });
 
-    return { langList, selectLang, handChange };
+    return { langList, selectLang };
   },
 };
 </script>

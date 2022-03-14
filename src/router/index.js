@@ -21,6 +21,7 @@ export const Route_VUE_ROUTER = "insVueRouter";
 export const Route_GITHUB = "insGitHub";
 export const Route_SOURCE_TREE = "insSourceTree";
 
+/** 路由設定 */
 const routes = [
   {
     path: "/",
@@ -75,6 +76,7 @@ const routes = [
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
 
+/** 路由實體 */
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
   history: createWebHashHistory(process.env.BASE_URL),

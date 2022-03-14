@@ -1,30 +1,37 @@
 <script>
 import { ref, reactive } from "vue";
 import { CircleCheck, CircleClose } from "@element-plus/icons-vue";
-import { ElMessageBox } from "element-plus";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { getUserByAccountId } from "../assets/data/UserInfoController.js";
 import { useStore } from "vuex";
 export default {
   setup() {
+    /** icon 勾勾 */
     const iconCheck = CircleCheck;
+    /** icon 叉叉 */
     const iconClose = CircleClose;
+    /** router instance */
     const router = useRouter();
+    /** store instance */
     const store = useStore();
+    /** i18n 方法 */
     const { t } = useI18n();
 
+    /** 參考帳號輸入框 */
     const formRef = ref();
+    /** 參考密碼輸入框 */
     const passwordRef = ref();
+    /** 輸入帳號and密碼資訊 */
     const objLogin = reactive({ account: "", password: "" });
+    /** 加載動畫控制 */
     const hasLoading = ref(false);
 
+    /** 帳號輸入框:必填欄位驗證 */
     const validateAccount = (rule, value, callback) => {
       // console.log("validateAccount");
       if (value === "") {
         callback(new Error(t("message.inputAccount")));
-
-        $t("label.reset");
       } else {
         // if (objLogin.account !== "") {
         //   if (!formRef.value) return;
@@ -33,17 +40,22 @@ export default {
       }
       callback();
     };
+
+    /** 密碼輸入框:必填欄位驗證 */
     const validatePassword = (rule, value, callback) => {
       if (value === "") {
         callback(new Error(t("message.inputPassword")));
       }
       callback();
     };
+
+    /** 必填欄位驗證 */
     const rules = reactive({
       account: [{ validator: validateAccount, trigger: "blur" }],
       password: [{ validator: validatePassword, trigger: "blur" }],
     });
 
+    /** 按下登入 */
     const handSummit = (formEl) => {
       if (!formEl) return;
       formEl.validate((valid) => {
@@ -54,14 +66,18 @@ export default {
         }
       });
     };
+
+    /** 按下重置 */
     const handReset = (el) => {
       el.resetFields();
     };
 
+    /** 帳號輸入框按下Enter:焦點指定給密碼輸入框 */
     const handAccountKeyEnter = () => {
       passwordRef.value.focus();
     };
 
+    /** 驗證登入使用者資訊 */
     const fnBeforeLogin = async () => {
       try {
         hasLoading.value = true;
@@ -69,27 +85,18 @@ export default {
           objLogin.account,
           objLogin.password
         );
-        if (user && user.length > 0) {
+        if (user) {
           router.push({ path: "/main" });
-          fnLogined(user[0]);
-        } else {
-          fnLogined(user);
         }
+        fnLogined(user.data);
       } catch (error) {
-        try {
-          await ElMessageBox.alert(error.errStr, error.errType, {
-            type: error.errType,
-          });
-          fnLogined({});
-        } catch (error) {
-          fnLogined({});
-        }
-        // console.log("getUserByAccountId", error);
+        fnLogined(null);
       }
     };
 
+    /** 登入使用者資訊 */
     const fnLogined = (user) => {
-      store.dispatch("commitObjUser", user);
+      store.dispatch("commitObjUser", user || {});
       hasLoading.value = false;
     };
 

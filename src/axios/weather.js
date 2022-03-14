@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const config = {
+/**
+ * axios設定檔
+ */
+export const config = {
   // `url` 是用于请求的服务器 URL
   url: "/user",
 
@@ -60,6 +63,9 @@ const config = {
   },
 };
 
+/**
+ * 氣象平台Axios實體
+ */
 const instance = axios.create(config);
 // 添加请求拦截器
 instance.interceptors.request.use(
@@ -87,7 +93,13 @@ instance.interceptors.response.use(
   }
 );
 
-export function getWeatherOfKH(cityName, townname) {
+/**
+ * 呼叫氣象平台Axios實體取得天氣資訊
+ * @param {string} cityName 城市
+ * @param {string} townname 鄉鎮區
+ * @returns {Promise} 天氣結果
+ */
+export function getWeather(cityName, townname) {
   return instance
     .get("F-D0047-093", {
       params: {
@@ -98,48 +110,4 @@ export function getWeatherOfKH(cityName, townname) {
     })
     .then((res) => res)
     .catch((error) => error);
-}
-
-const countyInstance = axios.create({
-  config,
-  baseURL: "https://api.nlsc.gov.tw/other/",
-});
-// 添加请求拦截器
-countyInstance.interceptors.request.use(
-  function (config) {
-    // 在发送请求之前做些什么
-    return config;
-  },
-  function (error) {
-    // 对请求错误做些什么
-    return Promise.reject(error);
-  }
-);
-
-// 添加响应拦截器
-countyInstance.interceptors.response.use(
-  function (response) {
-    // 2xx 范围内的状态码都会触发该函数。
-    // 对响应数据做点什么
-    return response;
-  },
-  function (error) {
-    // 超出 2xx 范围的状态码都会触发该函数。
-    // 对响应错误做点什么
-    return Promise.reject(error);
-  }
-);
-
-export function getCityList() {
-  return countyInstance
-    .get("/ListCounty")
-    .then((res) => res)
-    .catch((errer) => errer);
-}
-
-export function getTownList(cityNo) {
-  return countyInstance
-    .get(`/ListTown1/${cityNo}`)
-    .then((res) => res)
-    .catch((errer) => errer);
 }

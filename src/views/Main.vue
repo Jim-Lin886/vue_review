@@ -22,13 +22,19 @@ export default {
     LanguageChooser,
   },
   setup() {
+    /** menu icon */
     const iconMenu = Menu;
+    /** setting icon */
     const IconSetting = Setting;
+    /** turnOff icon */
     const iconTurnOff = TurnOff;
 
+    /** route */
     const store = useStore();
+    /** router */
     const router = useRouter();
 
+    /** Menu開關綁定 */
     const isOpenMenu = computed({
       get: () => {
         return store.getters.getIsOpenMenu;
@@ -46,6 +52,12 @@ export default {
       // console.log(key, keyPath);
       // console.log("handMenuClose");
     };
+
+    /**
+     * Menu選擇改變,執行前端路由
+     * @param {number} index 選擇功能的索引值
+     * @param {string} indexPath 選擇功能的路徑
+     */
     const handMenuSelect = (index, indexPath) => {
       let ary = [
         "",
@@ -66,16 +78,26 @@ export default {
             }
           : { path: `/main` }
       );
-      // console.log("handMenuSelect");
     };
+
+    /**
+     * Menu 打開/關閉
+     */
     const handBtnOpenMenu = () => {
       isOpenMenu.value = !isOpenMenu;
-      // console.log("handBtnOpenMenu", store);
     };
+
+    /**
+     * 按下登出,前端路由到首頁
+     */
     const handLogout = () => {
       router.push("/");
       store.dispatch("commitObjUser", {});
     };
+
+    /**
+     * 按下Github,開啟Github
+     */
     const handGithub = () => {
       window.open("https://github.com/Jim-Lin886/vue_review");
     };

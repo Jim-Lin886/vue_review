@@ -1,3 +1,6 @@
+/**
+ * 國土繪測中心API與氣象資料開放平台API的城市代碼對照比
+ */
 export const cityConvertion = {
   10002: {
     id: "F-D0047-003",

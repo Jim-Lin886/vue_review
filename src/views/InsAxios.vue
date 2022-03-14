@@ -5,7 +5,7 @@ import { xmlToJson } from "../components/FormatUtil.js";
 import { cityConvertion } from "../assets/data/LocalName.js";
 import Instruction from "../components/Instruction.vue";
 
-import { apiGetWeatherOfKH, apiGetCityList, apiGetTownList } from "../axios";
+import { apiGetWeather, apiGetCityList, apiGetTownList } from "../axios";
 export default {
   components: {
     Instruction,
@@ -15,25 +15,32 @@ export default {
       label: "datasetDescription",
       children: "children",
     };
-
+    /** route */
     const route = useRoute();
+    /** 查詢功能資訊的fehId */
     const fehId = ref(route.params.fehId);
 
+    /** 城市清單 */
     const cityList = reactive({ data: {} });
+    /** 鄉鎮區清單 */
     const townList = reactive({ data: {} });
+    /** 天氣資訊 */
     const weatherList = reactive({ data: {} });
 
+    /** 當前選擇城市 */
     const selectCity = ref("");
     watch(selectCity, (val, oldVal) => {
       // console.log("selectCity", val);
       fnGetTowList(val);
     });
 
+    /** 當前選擇鄉鎮區 */
     const selectTown = ref("");
     watch(selectTown, (val, oldVal) => {
-      fnGetWeatherOfKH();
+      fngetWeather();
     });
 
+    /** 取得城市清單 */
     const fnGetCityList = () => {
       apiGetCityList()
         .then((res) => {
@@ -42,6 +49,7 @@ export default {
         .catch((error) => {});
     };
 
+    /** 取得鄉鎮區清單 */
     const fnGetTowList = async (cityCode) => {
       try {
         const { data } = await apiGetTownList(cityCode);
@@ -50,14 +58,16 @@ export default {
       } catch (error) {}
     };
 
-    const fnGetWeatherOfKH = () => {
-      apiGetWeatherOfKH(cityConvertion[selectCity.value].id, selectTown.value)
+    /** 取得天氣資訊 */
+    const fngetWeather = () => {
+      apiGetWeather(cityConvertion[selectCity.value].id, selectTown.value)
         .then((res) => {
           fnProcWeatherOfKH(res.data);
         })
         .catch((error) => {});
     };
 
+    /** 處理城市清單 */
     const fnProcCityList = async (data) => {
       try {
         const obj = await xmlToJson(data);
@@ -66,11 +76,13 @@ export default {
       } catch (error) {}
     };
 
+    /** 處理鄉鎮區清單 */
     const fnProcTownList = (data) => {
       townList.data = data;
       // console.log("fnProcTownList", data);
     };
 
+    /** 處理天氣資訊 */
     const fnProcWeatherOfKH = (data) => {
       var str = String(data);
       [
@@ -88,6 +100,7 @@ export default {
       // console.log(weatherList.data);
     };
 
+    /** 處理天氣資訊每一層的顯示 */
     const fnTreeDisplay = (item) => {
       if (item.hasOwnProperty("datasetDescription")) {
         return item.datasetDescription.toString();

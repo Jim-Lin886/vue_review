@@ -11,8 +11,9 @@ export default {
     UserInfo,
   },
   setup() {
-    console.log("vue");
+    /** route */
     const route = useRoute();
+    /** 查詢功能資訊的fehId */
     const fehId = ref(route.params.fehId);
 
     return { fehId };

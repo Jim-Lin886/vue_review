@@ -7,10 +7,30 @@ import {
   Route_SOURCE_TREE,
 } from "@/router";
 import { integratedFetch } from "./DataUtil.js";
+import {
+  MsgFormat,
+  COR_E0001,
+  MSG_TYPE_SUCCESS,
+  MSG_POP_ASIDE,
+  ERR_E0003,
+} from "./MsgInfo";
 
+/** 功能代號:Vue */
 export const fehId_00001 = "fehId_00001";
-export const InsVueContent = {
-  data: {
+/** 功能代號:Vuex */
+export const fehId_00002 = "fehId_00002";
+/** 功能代號:VueRouter */
+export const fehId_00003 = "fehId_00003";
+/** 功能代號:Github */
+export const fehId_00004 = "fehId_00004";
+/** 功能代號:SourceTree */
+export const fehId_00005 = "fehId_00005";
+/** 功能代號:Axios */
+export const fehId_00006 = "fehId_00006";
+
+/** 功能介紹資料集 */
+const insContent = {
+  fehId_00001: {
     id: fehId_00001,
     title: "Vue",
     content: `Vue (讀音 /vjuː/，類似於 view) 是一套用於構建用戶界面的漸進式框架。與其它大型框架不同的是，
@@ -22,10 +42,7 @@ export const InsVueContent = {
     refContent: "Vue3使用文件",
     refUrl: "https://v3.cn.vuejs.org/",
   },
-};
-export const fehId_00002 = "fehId_00002";
-export const InsVuexContent = {
-  data: {
+  fehId_00002: {
     id: fehId_00002,
     title: "Vuex",
     content: `Vuex 是一個專為 Vue.js 應用程序開發的狀態管理模式 + 庫。它採用集中式存儲管理應用的所有組件的狀態，並以相應的規則保證狀態以一種可預測的方式發生變化。`,
@@ -34,10 +51,7 @@ export const InsVuexContent = {
     refContent: "Vuex4使用文件",
     refUrl: "https://vuex.vuejs.org/zh/guide/",
   },
-};
-export const fehId_00003 = "fehId_00003";
-export const InsVueRouterContent = {
-  data: {
+  fehId_00003: {
     id: fehId_00003,
     title: "Vue-Router",
     content: `Vue Router 是 Vue.js 的官方路由。它與 Vue.js 核心深度集成，讓用 Vue.js 構建單頁應用變得輕而易舉。功能包括：
@@ -49,10 +63,7 @@ export const InsVueRouterContent = {
     refContent: "Vuex-Router4使用文件",
     refUrl: "https://router.vuejs.org/zh/guide/",
   },
-};
-export const fehId_00004 = "fehId_00004";
-export const InsGithubContent = {
-  data: {
+  fehId_00004: {
     id: fehId_00004,
     title: "Github",
     content: `GitHub是透過Git進行版本控制的軟體原始碼代管服務平台，由GitHub公司（曾稱Logical Awesome）的開發者Chris Wanstrath、P. J. Hyett和湯姆·普雷斯頓·沃納使用Ruby on Rails編寫而成。
@@ -63,10 +74,7 @@ export const InsGithubContent = {
     refContent: "Github使用文件",
     refUrl: "https://docs.github.com/cn/get-started",
   },
-};
-export const fehId_00005 = "fehId_00005";
-export const InsSourceTreeContent = {
-  data: {
+  fehId_00005: {
     id: fehId_00005,
     title: "SourceTree",
     content: `SourceTree 是 Windows 和Mac OS X 下免費的 Git 和 Hg 客户端管理工具，同時也是Mn版本控制系統工具。支持創建、克隆、提交、push、pull 和合並等操作。
@@ -82,11 +90,7 @@ export const InsSourceTreeContent = {
     refContent: "SourceTree使用文件",
     refUrl: " https://www.sourcetreeapp.com/",
   },
-};
-
-export const fehId_00006 = "fehId_00006";
-export const InsAxiosContent = {
-  data: {
+  fehId_00006: {
     id: fehId_00006,
     title: "Axios",
     content: `Axios 是一個基於 promise 網絡請求庫，作用於node.js 和瀏覽器中。它是 isomorphic 的(即同一套代碼可以運行在瀏覽器和node.js中)。在服務端它使用原生 node.js http 模塊, 而在客戶端 (瀏覽端) 則使用 XMLHttpRequests。特性:從瀏覽器創建XMLHttpRequests、從node.js創建 http 請求、支持 Promise API
@@ -98,6 +102,11 @@ export const InsAxiosContent = {
   },
 };
 
+/**
+ * 透過Route類型取得對應功能的fehId
+ * @param {string} type Route類型
+ * @returns {string} fehId
+ */
 export const getFehIdByType = (type) => {
   switch (type) {
     case Route_VUE: {
@@ -121,25 +130,31 @@ export const getFehIdByType = (type) => {
   }
 };
 
+/**
+ * 透過功能的fehId取得功能資訊
+ * @param {string} id 取得功能資訊的fehid
+ * @returns {Promise} 功能資訊
+ */
 export const getInsVueContentById = (id) => {
-  switch (id) {
-    case fehId_00001: {
-      return integratedFetch(InsVueContent);
-    }
-    case fehId_00002: {
-      return integratedFetch(InsVuexContent);
-    }
-    case fehId_00003: {
-      return integratedFetch(InsVueRouterContent);
-    }
-    case fehId_00004: {
-      return integratedFetch(InsGithubContent);
-    }
-    case fehId_00005: {
-      return integratedFetch(InsSourceTreeContent);
-    }
-    case fehId_00006: {
-      return integratedFetch(InsAxiosContent);
-    }
+  let getIns = null;
+  let msgFmt = null;
+  if (insContent.hasOwnProperty(id)) {
+    msgFmt = new MsgFormat(
+      COR_E0001,
+      MSG_TYPE_SUCCESS,
+      MSG_POP_ASIDE
+    ).getValue();
+    getIns = {
+      data: { ...insContent[id] },
+      msg: { ...msgFmt },
+    };
+  } else {
+    msgFmt = new MsgFormat(
+      ERR_E0003,
+      MSG_TYPE_SUCCESS,
+      MSG_POP_ASIDE
+    ).getValue();
+    getIns = { data: {} };
   }
+  return integratedFetch(getIns, msgFmt);
 };

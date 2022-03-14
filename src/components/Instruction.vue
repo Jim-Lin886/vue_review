@@ -5,11 +5,13 @@ export default {
   components: {},
   props: {
     fehId: {
+      // 查詢功能資訊的fehId
       type: String,
       default: "",
     },
   },
   setup(props) {
+    /** 功能資訊 */
     const fehData = reactive({ data: {} });
 
     getInsVueContentById(props.fehId).then((res) => {
@@ -17,13 +19,13 @@ export default {
       // console.log(fehData);
     });
 
+    /** 按下參考連結 */
     const handLinkClick = (e) => {
       // console.log("handLinkClick", e);
       window.open(fehData.data.refUrl, "");
       return false;
     };
 
-    console.log();
     return { fehData, handLinkClick };
   },
 };

@@ -5,6 +5,7 @@ import en from "./en.json";
 export const item_tw = { label: "繁體中文", value: "zh_tw" };
 export const item_en = { label: "English", value: "en_us" };
 
+/** i18n實體 */
 const i18n = createI18n({
   //   legacy: false,
   locale: "zh_tw", // 設定語言
