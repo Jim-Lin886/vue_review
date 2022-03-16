@@ -2,7 +2,13 @@
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { Setting, Menu, HomeFilled, TurnOff } from "@element-plus/icons-vue";
+import {
+  Setting,
+  Menu,
+  HomeFilled,
+  Calendar,
+  TurnOff,
+} from "@element-plus/icons-vue";
 import {
   Route_AXIOS,
   Route_VUE,
@@ -10,6 +16,7 @@ import {
   Route_VUE_ROUTER,
   Route_GITHUB,
   Route_SOURCE_TREE,
+  Route_MY_SCHEDULE,
 } from "@/router";
 import { getFehIdByType } from "@/assets/data/InstructionController.js";
 import LoginLabel from "../components/LoginLabel.vue";
@@ -18,6 +25,7 @@ import LanguageChooser from "../components/LanguageChooser.vue";
 export default {
   components: {
     IconHome: HomeFilled,
+    IconCalendar: Calendar,
     LoginLabel,
     LanguageChooser,
   },
@@ -67,17 +75,20 @@ export default {
         { path: Route_GITHUB },
         { path: Route_SOURCE_TREE },
         { path: Route_AXIOS },
+        { path: Route_MY_SCHEDULE },
       ];
       let routerType = ary[index]["path"];
       let fehId = getFehIdByType(routerType) || "";
-
-      router.push(
-        fehId
-          ? {
-              path: `/main/${routerType}/${fehId}`,
-            }
-          : { path: `/main` }
-      );
+      console.log("fehId", fehId);
+      if (fehId === "") {
+        router.push({
+          path: `/main`,
+        });
+      } else {
+        router.push({
+          path: `/main/${routerType}/${fehId}`,
+        });
+      }
     };
 
     /**
@@ -210,6 +221,10 @@ export default {
             <el-menu-item index="0">
               <el-icon :size="80"><icon-home /></el-icon>
               <span>{{ $t("label.home") }}</span>
+            </el-menu-item>
+            <el-menu-item index="7">
+              <el-icon :size="80"><icon-calendar /></el-icon>
+              <span>{{ $t("label.schedule") }}</span>
             </el-menu-item>
             <el-menu-item index="1">
               <!-- <el-icon><icon-apple /></el-icon> -->

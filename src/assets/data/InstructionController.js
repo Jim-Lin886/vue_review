@@ -5,6 +5,7 @@ import {
   Route_VUE_ROUTER,
   Route_GITHUB,
   Route_SOURCE_TREE,
+  Route_MY_SCHEDULE,
 } from "@/router";
 import { integratedFetch } from "./DataUtil.js";
 import {
@@ -27,6 +28,8 @@ export const fehId_00004 = "fehId_00004";
 export const fehId_00005 = "fehId_00005";
 /** 功能代號:Axios */
 export const fehId_00006 = "fehId_00006";
+/** 功能代號:MySchedule */
+export const fehId_00007 = "fehId_00007";
 
 /** 功能介紹資料集 */
 const insContent = {
@@ -100,6 +103,9 @@ const insContent = {
     refContent: "Axios使用文件",
     refUrl: "https://axios-http.com/zh/docs/instance",
   },
+  fehId_00007: {
+    id: fehId_00007,
+  },
 };
 
 /**
@@ -126,6 +132,12 @@ export const getFehIdByType = (type) => {
     }
     case Route_AXIOS: {
       return fehId_00006;
+    }
+    case Route_AXIOS: {
+      return fehId_00006;
+    }
+    case Route_MY_SCHEDULE: {
+      return fehId_00007;
     }
   }
 };

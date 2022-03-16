@@ -4,6 +4,7 @@ import { config } from "./weather.js";
 const instance = axios.create({
   config,
   baseURL: "https://openapi.twse.com.tw/v1/",
+  withCredentials: true, // default
 });
 
 // 添加请求拦截器

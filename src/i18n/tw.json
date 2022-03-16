@@ -1,5 +1,6 @@
 {
   "label.login": "登入",
+  "label.noLogin": "未登入",
   "label.logout": "登出",
   "label.reset": "重置",
   "label.clean": "清除",
@@ -25,8 +26,18 @@
   "label.cancel": "取消",
   "label.confirm": "確定",
   "label.description": "說明 ",
+  "label.schedule": "排程 ",
+  "label.reload": "重新載入",
+  "label.load": "載入",
+  "label.done": "完成",
+  "label.importGoogleCalendar": "匯入Googgle行事曆",
+
+  "label.createdDateTime": "建立時間",
+  "label.creatorName": "建立人員",
+  "label.creatoEmail": "信箱",
 
   "message.inputAccount": "請輸入帳號",
   "message.inputPassword": "請輸入密碼",
-  "message.select": "請選擇"
+  "message.select": "請選擇",
+  "message.noDataFound": "查無資料"
 }

@@ -1,5 +1,6 @@
 {
   "label.login": "Logoin",
+  "label.noLogin": "No Logoin",
   "label.logout": "logout",
   "label.reset": "Reset",
   "label.clean": "clean",
@@ -24,9 +25,19 @@
   "label.female": "Female",
   "label.cancel": "Cancel",
   "label.confirm": "Confirm",
-  "label.description": "Description ",
+  "label.description": "Description",
+  "label.schedule": "Schedule",
+  "label.reload": "Reload",
+  "label.load": "Load",
+  "label.done": "Done",
+  "label.importGoogleCalendar": "Import Googgle Calendar",
+
+  "label.createdDateTime": "Created Date",
+  "label.creatorName": "Creator User",
+  "label.creatoEmail": "E-mail",
 
   "message.inputAccount": " Please input Account",
   "message.inputPassword": "Please input Password",
-  "message.select": "Please select"
+  "message.select": "Please select",
+  "message.noDataFound": "No Data Found"
 }
