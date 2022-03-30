@@ -35,6 +35,7 @@
   "label.createdDateTime": "建立時間",
   "label.creatorName": "建立人員",
   "label.creatoEmail": "信箱",
+  "label.stock": "股票",
 
   "message.inputAccount": "請輸入帳號",
   "message.inputPassword": "請輸入密碼",
