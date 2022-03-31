@@ -2,7 +2,7 @@
 import { useStore } from "vuex";
 import { item_tw } from "./i18n";
 export default {
-  setup() {
+  setup() { 
     const store = useStore();
     store.dispatch("commitLang", item_tw.value);
   },
