@@ -213,7 +213,7 @@ export default {
           <!-- </el-tooltip> -->
         </el-form-item>
       </el-form>
-      <p>&#64;測試帳密:Jim/Jim</p>
+      <p>&#64;測試帳密:Jim/Jim (v0.0.5)</p>
     </div>
   </div>
 </template>

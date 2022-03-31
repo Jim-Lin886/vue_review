@@ -35,6 +35,8 @@
   "label.createdDateTime": "Created Date",
   "label.creatorName": "Creator User",
   "label.creatoEmail": "E-mail",
+  "label.stock": "Stock",
+
 
   "message.inputAccount": " Please input Account",
   "message.inputPassword": "Please input Password",

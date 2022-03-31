@@ -35,11 +35,13 @@ export class MsgFormat {
    * @param {string} msgCode 取得資料
    * @param {string} msgType 訊息類型
    * @param {string} msgStatus 訊息位置
+   * @param {string} msgStr 顯示內容
    */
-  constructor(msgCode, msgType, msgStatus) {
+  constructor(msgCode, msgType, msgStatus, msgStr = "") {
     this.msgCode = msgCode;
     this.msgType = msgType;
     this.msgStatus = msgStatus;
+    this.msgStr = msgStr;
   }
 
   /**
@@ -50,6 +52,9 @@ export class MsgFormat {
       let msgInfo = { ...this.msgInfo[this.msgCode] };
       msgInfo.msgType = this.msgType;
       msgInfo.msgStatus = this.msgStatus;
+      if (typeof this.msgStr === "string" && this.msgStr !== "") {
+        msgInfo.msgStr = this.msgStr;
+      }
       return msgInfo;
     }
     return null;

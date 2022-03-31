@@ -6,6 +6,7 @@ import {
   Route_GITHUB,
   Route_SOURCE_TREE,
   Route_MY_SCHEDULE,
+  Route_MY_STOCK,
 } from "@/router";
 import { integratedFetch } from "./DataUtil.js";
 import {
@@ -30,6 +31,8 @@ export const fehId_00005 = "fehId_00005";
 export const fehId_00006 = "fehId_00006";
 /** 功能代號:MySchedule */
 export const fehId_00007 = "fehId_00007";
+/** 功能代號:MyStock */
+export const fehId_00008 = "fehId_00008";
 
 /** 功能介紹資料集 */
 const insContent = {
@@ -138,6 +141,9 @@ export const getFehIdByType = (type) => {
     }
     case Route_MY_SCHEDULE: {
       return fehId_00007;
+    }
+    case Route_MY_STOCK: {
+      return fehId_00008;
     }
   }
 };

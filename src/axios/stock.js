@@ -1,16 +1,19 @@
 import axios from "axios";
 import { config } from "./weather.js";
+import { integratedRemoteFetch } from "../assets/data/DataUtil.js";
 
 const instance = axios.create({
   config,
-  baseURL: "https://openapi.twse.com.tw/v1/",
-  withCredentials: true, // default
+  baseURL: "https://www.twse.com.tw/exchangeReport/",
+  withCredentials: false, // default
 });
 
 // 添加请求拦截器
 instance.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
+    // config.headers.common["Access-Control-Allow-Origin"] = "*";
+    // config.headers.post["Content-Type"] = "application/json";
     return config;
   },
   function (error) {
@@ -24,11 +27,13 @@ instance.interceptors.response.use(
   function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
+    integratedRemoteFetch(response, null);
     return response;
   },
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
+    integratedRemoteFetch(null, error);
     return Promise.reject(error);
   }
 );
@@ -38,7 +43,7 @@ instance.interceptors.response.use(
  */
 export async function getCompanyList() {
   try {
-    const res = await instance.get("opendata/t187ap03_L/");
+    const res = await instance.get("STOCK_DAY_ALL", { response: "open_dat" });
     return res;
   } catch (error) {
     return error;

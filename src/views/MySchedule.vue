@@ -161,7 +161,6 @@ export default {
     const handleSignOutClick = () => {
       Promise.resolve(api.auth2.getAuthInstance().signOut()).then((res) => {
         authorized.value = false;
-        console.log("handleSignOutClick");
       });
     };
 

@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import i18n from "../i18n";
+import apiSotre from "./apiStore.js";
+import stockStore from "./stockStore.js";
 
 export default createStore({
   state: {
@@ -42,5 +44,8 @@ export default createStore({
       }
     },
   },
-  modules: {},
+  modules: {
+    apiSotre,
+    stockStore,
+  },
 });

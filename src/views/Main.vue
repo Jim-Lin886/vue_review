@@ -1,5 +1,5 @@
 <script>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import {
@@ -8,6 +8,7 @@ import {
   HomeFilled,
   Calendar,
   TurnOff,
+  Briefcase,
 } from "@element-plus/icons-vue";
 import {
   Route_AXIOS,
@@ -17,8 +18,13 @@ import {
   Route_GITHUB,
   Route_SOURCE_TREE,
   Route_MY_SCHEDULE,
+  Route_MY_STOCK,
 } from "@/router";
-import { getFehIdByType } from "@/assets/data/InstructionController.js";
+import {
+  getFehIdByType,
+  fehId_00007,
+  fehId_00008,
+} from "@/assets/data/InstructionController.js";
 import LoginLabel from "../components/LoginLabel.vue";
 import LanguageChooser from "../components/LanguageChooser.vue";
 
@@ -26,6 +32,7 @@ export default {
   components: {
     IconHome: HomeFilled,
     IconCalendar: Calendar,
+    IconBriefcase: Briefcase,
     LoginLabel,
     LanguageChooser,
   },
@@ -76,13 +83,17 @@ export default {
         { path: Route_SOURCE_TREE },
         { path: Route_AXIOS },
         { path: Route_MY_SCHEDULE },
+        { path: Route_MY_STOCK },
       ];
       let routerType = ary[index]["path"];
       let fehId = getFehIdByType(routerType) || "";
-      console.log("fehId", fehId);
       if (fehId === "") {
         router.push({
           path: `/main`,
+        });
+      } else if (fehId === fehId_00007 || fehId === fehId_00008) {
+        router.push({
+          path: `/main/${routerType}`,
         });
       } else {
         router.push({
@@ -113,6 +124,14 @@ export default {
       window.open("https://github.com/Jim-Lin886/vue_review");
     };
 
+    const qqqq = () => {
+      console.log("qqqq");
+      router.push({ path: "/main/salelist" });
+    };
+    const xxxx = () => {
+      console.log("xxxx");
+      router.push({ path: `/main/${Route_MY_STOCK}` });
+    };
     return {
       iconMenu,
       IconSetting,
@@ -124,6 +143,8 @@ export default {
       handBtnOpenMenu,
       handLogout,
       handGithub,
+      xxxx,
+      qqqq,
     };
   },
 };
@@ -226,6 +247,10 @@ export default {
               <el-icon :size="80"><icon-calendar /></el-icon>
               <span>{{ $t("label.schedule") }}</span>
             </el-menu-item>
+            <el-menu-item index="8">
+              <el-icon :size="80"><icon-briefcase /></el-icon>
+              <span>{{ $t("label.stock") }}</span>
+            </el-menu-item>
             <el-menu-item index="1">
               <!-- <el-icon><icon-apple /></el-icon> -->
               <el-icon>
@@ -302,7 +327,9 @@ export default {
             </el-sub-menu>
           </el-menu>
 
-          <div id="main-right"><router-view /></div>
+          <div id="main-right">
+            <router-view @mystocksalelist-exit="xxxx" @mystock-confirm="qqqq" />
+          </div>
         </div>
       </el-main>
     </el-container>

@@ -14,6 +14,8 @@ import InsVueRouter from "../views/InsVueRouter.vue";
 import InsGitHub from "../views/InsGitHub.vue";
 import InsSourceTree from "../views/InsSourceTree.vue";
 import MySchedule from "../views/MySchedule.vue";
+import MyStock from "../views/MyStock.vue";
+import MyStockSaleList from "../views/MyStockSaleList.vue";
 
 export const Route_AXIOS = "insAxios";
 export const Route_VUE = "insVue";
@@ -21,7 +23,8 @@ export const Route_VUEX = "insVuex";
 export const Route_VUE_ROUTER = "insVueRouter";
 export const Route_GITHUB = "insGitHub";
 export const Route_SOURCE_TREE = "insSourceTree";
-export const Route_MY_SCHEDULE = "MySchedule";
+export const Route_MY_SCHEDULE = "mySchedule";
+export const Route_MY_STOCK = "myStock";
 
 /** 路由設定 */
 const routes = [
@@ -64,8 +67,16 @@ const routes = [
         component: InsSourceTree,
       },
       {
-        path: `${Route_MY_SCHEDULE}/:fehId`,
+        path: `${Route_MY_SCHEDULE}`,
         component: MySchedule,
+      },
+      {
+        path: `${Route_MY_STOCK}`,
+        component: MyStock,
+      },
+      {
+        path: "salelist",
+        component: MyStockSaleList,
       },
     ],
   },

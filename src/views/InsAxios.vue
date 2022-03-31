@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { xmlToJson } from "../components/FormatUtil.js";
 import { cityConvertion } from "../assets/data/LocalName.js";
 import Instruction from "../components/Instruction.vue";
+// import { useStore } from "vuex";
 
 import { apiGetWeather, apiGetCityList, apiGetTownList } from "../axios";
 export default {
@@ -129,6 +130,15 @@ export default {
       //初始取城市清單
       fnGetCityList();
     });
+
+    // const store = useStore();
+    // console.log(store.getters["apiSotre/getApiMsg"]);
+    // watch(
+    //   () => store.getters["apiSotre/getApiMsg"],
+    //   (a, b) => {
+    //     console.log("aa", a, b);
+    //   }
+    // );
 
     return {
       props,

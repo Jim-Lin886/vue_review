@@ -2,6 +2,8 @@ import { ElMessageBox } from "element-plus";
 import { ElNotification } from "element-plus";
 import {
   MsgFormat,
+  COR_E0001,
+  MSG_TYPE_SUCCESS,
   ERR_E0000,
   MSG_TYPE_ERROR,
   MSG_POP_CENTER,
@@ -71,5 +73,40 @@ const procMsg = (msg) => {
       type: msg.msgType,
       position: "bottom-right",
     });
+  }
+};
+
+/**
+ * 整合API回傳內容加上訊息提示
+ * @param {res} res API回傳內容
+ * @param {error} error API回傳錯誤內容
+ */
+export const integratedRemoteFetch = (res, error) => {
+  console.log("1", `${MSG_TYPE_SUCCESS} ${res.request.responseURL}`);
+  let msgFmt = null;
+  let getInfo = null;
+  if (res) {
+    console.log("2");
+    msgFmt = new MsgFormat(
+      COR_E0001,
+      MSG_TYPE_SUCCESS,
+      MSG_POP_ASIDE,
+      `QuerySuccessByApi: ${res.request.responseURL}`
+    ).getValue();
+    console.log("3", msgFmt);
+    getInfo = {
+      data: {},
+      msg: { ...msgFmt },
+    };
+
+    resolveInterceptors(getInfo);
+  } else if (error) {
+    console.log("3");
+    msgFmt = new MsgFormat(
+      ERR_E0000,
+      MSG_TYPE_ERROR,
+      MSG_POP_CENTER
+    ).getValue();
+    rejectInterceptors(msgFmt);
   }
 };
